@@ -1,0 +1,36 @@
+<project name="java-pong" default="main" basedir=".">
+
+    <property name="srcdir"     location="src" />
+    <property name="builddir"   location="build" />
+    <property name="classesdir" location="${builddir}/classes" />
+    <property name="jardir"     location="${builddir}/jar" />
+
+    <target name="init" description="Initializes build directories, all other targets depends on it">
+        <mkdir dir="${builddir}" />
+        <mkdir dir="${classesdir}" />
+        <mkdir dir="${jardir}" />
+    </target>
+
+    <target name="clean" description="Deletes recursively the build directory">
+        <delete dir="${builddir}" />
+    </target>
+
+    <target name="compile" depends="init" description="Compiles classes from java sources">
+        <javac srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false" />
+    </target>
+
+    <target name="jar" depends="compile" description="Builds the distributable jar file">
+        <jar destfile="${jardir}/${ant.project.name}.jar" basedir="${classesdir}">
+            <manifest>
+                <attribute name="Main-Class" value="com.github.inside.Pong" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar" description="Compiles and runs the jar file">
+        <java jar="${jardir}/${ant.project.name}.jar" fork="true" />
+    </target>
+
+    <target name="main" depends="clean,run" description="Cleans and run the project" />
+
+</project>

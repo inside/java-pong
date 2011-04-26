@@ -1,4 +1,4 @@
-package com.github.inside.games;
+package com.github.inside;
 
 import java.awt.Color;
 import javax.swing.border.*;

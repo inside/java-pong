@@ -1,7 +1,7 @@
-package com.github.inside.games;
+package com.github.inside;
 
 import javax.swing.JFrame;
-import com.github.inside.games.Board;
+import com.github.inside.Board;
 
 class Pong extends JFrame
 {

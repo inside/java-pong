@@ -2,6 +2,7 @@ package com.github.inside;
 
 import javax.swing.JFrame;
 import com.github.inside.Board;
+import com.github.inside.Config;
 
 class Pong extends JFrame
 {
@@ -9,7 +10,7 @@ class Pong extends JFrame
     {
         this.add(new Board());
         this.setTitle("Pong");
-        this.setSize(500, 250);
+        this.setSize(Config.PONG_WIDTH , Config.PONG_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);

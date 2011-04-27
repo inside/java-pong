@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
+import com.github.inside.Config;
 
 public class Board extends JPanel implements Runnable
 {

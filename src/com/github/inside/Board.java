@@ -4,15 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import com.github.inside.Config;
+//import java.util.Random;
+import java.lang.Math;
 
 public class Board extends JPanel implements Runnable
 {
-    private int x = 0;
-    private int y = 0;
+    private int x = 250;
+    private int y = 125;
     private Thread thread;
+    private boolean started = false;
+    private boolean paused = false;
     public boolean isRunning = false;
 
     public Board()
@@ -20,38 +22,8 @@ public class Board extends JPanel implements Runnable
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
-        this.addKeyListener(new KeyAdapter()
-        {
-            public void keyPressed(KeyEvent event)
-            {
-                int keyCode = event.getKeyCode();
-
-                System.out.println(keyCode);
-                if (keyCode == KeyEvent.VK_SPACE)
-                {
-                    System.out.println("space bar was pressed");
-                }
-            }
-
-            public void keyReleased(KeyEvent event)
-            {
-                int keyCode = event.getKeyCode();
-
-                System.out.println(keyCode);
-                if (keyCode == KeyEvent.VK_SPACE)
-                {
-                    System.out.println("space bar was released");
-                }
-            }
-        });
+        this.addKeyListener(new Keyboard(this));
     }
-
-//    public void addNotify()
-//    {
-//        super.addNotify();
-//        this.thread = new Thread(this);
-//        this.thread.start();
-//    }
 
     public void paint(Graphics g)
     {
@@ -63,8 +35,9 @@ public class Board extends JPanel implements Runnable
 
     public void cycle()
     {
-        this.x += 10;
-        this.y += 10;
+        this.x += Math.random() * 2 - 1;
+        this.y += Math.random() * 2 - 1;
+        System.out.println(this.x);
     }
 
     public void run()
@@ -76,12 +49,45 @@ public class Board extends JPanel implements Runnable
 
             try
             {
-                Thread.sleep(500);
+                Thread.sleep(33);
             }
             catch (InterruptedException e)
             {
-                System.out.println("interrupted");
+                System.out.println("InterruptedException catched");
+                break;
             }
         }
+    }
+
+    public void start()
+    {
+        if (this.started)
+        {
+            return;
+        }
+
+        this.started = true;
+        this.thread = new Thread(this);
+        this.thread.setPriority(Thread.MIN_PRIORITY);
+        this.thread.start();
+
+        System.out.println("start called");
+    }
+
+    public void stop()
+    {
+        if (this.thread != null)
+        {
+            this.thread.interrupt();
+        }
+
+        this.thread = null;
+        this.started = false;
+        System.out.println("stop called");
+    }
+
+    public void togglePause()
+    {
+        System.out.println("togglePause called");
     }
 }

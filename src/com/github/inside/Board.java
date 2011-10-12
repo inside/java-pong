@@ -6,11 +6,10 @@ import javax.swing.JPanel;
 import java.awt.Toolkit;
 import com.github.inside.Config;
 import java.lang.Math;
+import com.github.inside.Ball;
 
 public class Board extends JPanel implements Runnable
 {
-    private int x = 0;
-    private int y = 0;
     private Thread thread;
     private boolean started = false;
     private boolean paused = false;
@@ -18,22 +17,32 @@ public class Board extends JPanel implements Runnable
     private long period = 0;
     public long startTime = 0;
     public long time = 0;
+    public Ball[] projectiles;
 
     public Board()
     {
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
+        this.projectiles = new Ball[10];
+
+        for (int i = 0; i < 10; i++)
+        {
+            this.projectiles[i] = new Ball();
+        }
+
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.BLACK);
         this.addKeyListener(new Keyboard(this));
     }
 
-    public void paint(Graphics g)
+    public void paintComponent(Graphics g)
     {
-        super.paint(g);
-        g.setColor(Color.RED);
-        g.fillRect(this.x, this.y, 10, 10);
-        Toolkit.getDefaultToolkit().sync();
+        super.paintComponent(g);
+
+        for (int i = 0; i < 10; i++)
+        {
+            this.projectiles[i].draw(g);
+        }
     }
 
     public void updateForNewFrame()
@@ -41,12 +50,10 @@ public class Board extends JPanel implements Runnable
         this.time = System.currentTimeMillis() - this.startTime;
         this.startTime = System.currentTimeMillis();
 
-        this.x += (int) (Config.BALL_INITIAL_SPEED * (double) this.time);
-        this.y += (int) (Config.BALL_INITIAL_SPEED * (double) this.time);
-        System.out.println(Config.BALL_INITIAL_SPEED);
-        System.out.println(this.time);
-        System.out.println((double) this.time);
-        System.out.println(this.x);
+        for (int i = 0; i < 10; i++)
+        {
+            this.projectiles[i].updateForNewFrame();
+        }
     }
 
     public void run()

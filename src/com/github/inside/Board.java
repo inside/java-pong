@@ -24,7 +24,7 @@ public class Board extends JPanel implements Runnable
     {
         System.out.println("Board constructor called");
         this.setLayout(null);
-        this.setBounds(Config.FRAME_LEFT_MARGIN, Config.FRAME_TOP_MARGIN, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
+        this.setBounds(0, 0, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
         this.projectiles = new Ball[this.projectileCount];
 

@@ -3,10 +3,10 @@ package com.github.inside;
 class Config
 {
     public static final int FRAME_RATE = 60; // 30 to 100 images per second
-    public static final int FRAME_TOP_MARGIN = 50;
-    public static final int FRAME_RIGHT_MARGIN = 100;
-    public static final int FRAME_BOTTOM_MARGIN = 100;
-    public static final int FRAME_LEFT_MARGIN = 100;
+    public static final int BOARD_CONTAINER_TOP_MARGIN = 50;
+    public static final int BOARD_CONTAINER_RIGHT_MARGIN = 100;
+    public static final int BOARD_CONTAINER_BOTTOM_MARGIN = 100;
+    public static final int BOARD_CONTAINER_LEFT_MARGIN = 100;
 
     public static final int MAX_SCORE = 50;
 

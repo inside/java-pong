@@ -13,8 +13,6 @@ class Ball extends Projectile
     public Ball(Board board)
     {
         super(board);
-//        System.out.println("### width from ball " + this.width);
-//        System.out.println("### height from ball " + this.height);
     }
 
     public void updateForNewFrame()

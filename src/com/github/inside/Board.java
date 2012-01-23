@@ -22,7 +22,6 @@ public class Board extends JPanel implements Runnable
 
     public Board()
     {
-        System.out.println("Board constructor called");
         this.setLayout(null);
         this.setBounds(0, 0, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
@@ -30,7 +29,6 @@ public class Board extends JPanel implements Runnable
 
         for (int i = 0; i < this.projectileCount; i++)
         {
-            System.out.println("Adding a Ball object to the projectiles array");
             this.projectiles[i] = new Ball(this);
         }
 
@@ -48,7 +46,6 @@ public class Board extends JPanel implements Runnable
 
         for (int i = 0; i < this.projectileCount; i++)
         {
-            System.out.println("Calling the draw method on a Ball");
             this.projectiles[i].draw(g);
         }
     }
@@ -60,7 +57,6 @@ public class Board extends JPanel implements Runnable
 
         for (int i = 0; i < this.projectileCount; i++)
         {
-            System.out.println("Calling the updateForNewFrame method on a Ball");
             this.projectiles[i].updateForNewFrame();
         }
     }
@@ -69,7 +65,6 @@ public class Board extends JPanel implements Runnable
     {
         while (true)
         {
-            System.out.println("Beginning new iteration");
             this.updateForNewFrame();
             this.repaint();
 

@@ -23,19 +23,9 @@ public class Projectile extends Equipement
 
     public void resetPosition()
     {
-        System.out.println("Calling resetPosition from Projectile.java");
         this.x = (Config.BOARD_WIDTH / 2) - (this.width / 2);
         this.y = (Config.BOARD_HEIGHT / 2) - (this.height / 2);
         this.setVelocity(this.getInitialUnitVector());
-
-        System.out.println("this.width: " + this.width);
-        System.out.println("this.height: " + this.height);
-
-        System.out.println("Config.BOARD_WIDTH: " + Config.BOARD_WIDTH);
-        System.out.println("Config.BOARD_HEIGHT: " + Config.BOARD_HEIGHT);
-
-        System.out.println("x: " + this.x);
-        System.out.println("y: " + this.y);
     }
 
     public void setVelocity(Vector vector)
@@ -52,8 +42,6 @@ public class Projectile extends Equipement
         
 //        y = 0.6;
 
-        System.out.println("y from getInitialUnitVector: " + y);
-    
         // 50% of the time, go downwards
         if (Math.round(Math.random()) == 0)
         {
@@ -122,10 +110,6 @@ public class Projectile extends Equipement
     {
         this.x += this.vX * this.speed * this.board.time;
         this.y += this.vY * this.speed * this.board.time;
-        System.out.println("this.vX :" + this.vX);
-        System.out.println("this.vY :" + this.vY);
-        System.out.println("this.speed :" + this.speed);
-        System.out.println("this.board.time :" + this.board.time);
 
         if (this.hitsLeftWall())
         {
@@ -150,7 +134,5 @@ public class Projectile extends Equipement
             this.y = Config.BOARD_HEIGHT - this.height;
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
         }
-//        System.out.println((int) Math.round(this.x));
-//        System.out.println((int) Math.round(this.y));
     }
 }

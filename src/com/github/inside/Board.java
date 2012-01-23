@@ -18,29 +18,37 @@ public class Board extends JPanel implements Runnable
     public long startTime = 0;
     public long time = 0;
     public Ball[] projectiles;
+    public int projectileCount = 10;
 
     public Board()
     {
+        System.out.println("Board constructor called");
+        this.setLayout(null);
+        this.setBounds(Config.FRAME_LEFT_MARGIN, Config.FRAME_TOP_MARGIN, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
-        this.projectiles = new Ball[10];
+        this.projectiles = new Ball[this.projectileCount];
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < this.projectileCount; i++)
         {
-            this.projectiles[i] = new Ball();
+            System.out.println("Adding a Ball object to the projectiles array");
+            this.projectiles[i] = new Ball(this);
         }
 
         this.setFocusable(true);
         this.setDoubleBuffered(true);
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.decode("#ffffff"));
         this.addKeyListener(new Keyboard(this));
     }
 
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        g.setColor(Color.RED);
+        g.fillRect(100, 0, 25, 25);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < this.projectileCount; i++)
         {
+            System.out.println("Calling the draw method on a Ball");
             this.projectiles[i].draw(g);
         }
     }
@@ -50,8 +58,9 @@ public class Board extends JPanel implements Runnable
         this.time = System.currentTimeMillis() - this.startTime;
         this.startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < this.projectileCount; i++)
         {
+            System.out.println("Calling the updateForNewFrame method on a Ball");
             this.projectiles[i].updateForNewFrame();
         }
     }
@@ -60,6 +69,7 @@ public class Board extends JPanel implements Runnable
     {
         while (true)
         {
+            System.out.println("Beginning new iteration");
             this.updateForNewFrame();
             this.repaint();
 

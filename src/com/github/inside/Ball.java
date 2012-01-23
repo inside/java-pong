@@ -1,45 +1,53 @@
 package com.github.inside;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JPanel;
-import java.lang.Math;
 import com.github.inside.Config;
 
-class Ball extends JPanel
+class Ball extends Projectile
 {
-    int x = 250;
-    int y = 125;
-    int newX, newY;
-    int width = Config.BALL_INITIAL_WIDTH; 
-    int height = Config.BALL_INITIAL_HEIGHT; 
-    double speed = Config.BALL_INITIAL_SPEED;
+    int width     = Config.BALL_INITIAL_WIDTH,
+        height    = Config.BALL_INITIAL_HEIGHT;
+    double speed  = Config.BALL_INITIAL_SPEED;
+    Color color   = Color.RED;
 
-    public Ball()
+    public Ball(Board board)
     {
-        this.newX = (int) ((Math.random() * 2.0 - 1.0) * 10);
-        this.newY = (int) ((Math.random() * 2.0 - 1.0) * 10);
-    }
-
-    public void draw(Graphics g)
-    {
-        super.paint(g);
-        g.setColor(Color.RED);
-        g.fillRect(this.x, this.y, this.width, this.height);
+        super(board);
+//        System.out.println("### width from ball " + this.width);
+//        System.out.println("### height from ball " + this.height);
     }
 
     public void updateForNewFrame()
     {
-        if (this.x <= 0 || this.x >= Config.PONG_WIDTH)
-        {
-            this.newX *= -1;
-        }
-        if (this.y <= 0 || this.y >= Config.PONG_HEIGHT)
-        {
-            this.newY *= -1;
-        }
-
-        this.x += this.newX;
-        this.y += this.newY;
+        super.updateForNewFrame();
+//        this.handlePaddleRebound();
     }
+
+    /*
+    public void handlePaddleRebound()
+    {
+        if (this.hitsLeftPaddle())
+        {
+            this.x = this.board.leftPaddle.x + this.board.leftPaddle.width;
+            this.reboundsOnPaddle(this.board.leftPaddle);
+            this.setVelocity(this.getUnitVector(this.vX, this.vY));
+//            this.board.leftPlayer.updateScore();
+        }
+        else if (this.hitsRightPaddle())
+        {
+            this.x = this.board.rightPaddle.x - this.width;
+            this.reboundsOnPaddle(this.board.rightPaddle);
+            this.setVelocity(this.getUnitVector(this.vX, this.vY));
+//            this.board.rightPlayer.updateScore();
+        }
+    }
+    */
+
+    /*
+    public void reboundsOnPaddle(Equipement paddle)
+    {
+        this.vX *= -1;
+        this.vY = ((this.y + this.height / 2) - (paddle.y + paddle.height / 2)) / (paddle.height / 2);
+    }
+    */
 }

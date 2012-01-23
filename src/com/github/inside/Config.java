@@ -3,9 +3,15 @@ package com.github.inside;
 class Config
 {
     public static final int FRAME_RATE = 60; // 30 to 100 images per second
+    public static final int FRAME_TOP_MARGIN = 50;
+    public static final int FRAME_RIGHT_MARGIN = 100;
+    public static final int FRAME_BOTTOM_MARGIN = 100;
+    public static final int FRAME_LEFT_MARGIN = 100;
+
     public static final int MAX_SCORE = 50;
-    public static final int PONG_WIDTH = 500;
-    public static final int PONG_HEIGHT = 250;
+
+    public static final int BOARD_WIDTH = 500;
+    public static final int BOARD_HEIGHT = 250;
 
     public static final double PADDLE_INITIAL_SPEED = 0.2;
     public static final double PADDLE_MIN_SPEED = 0.1;
@@ -26,5 +32,5 @@ class Config
     public static final int POWER_LIFETIME = 10000; // milliseconds
 
     public static final int MAX_PROJECTILES = 10;
-    public static final int PROJECTILES_DEFAULT_LIFETIME = 20000; // milliseconds
+    public static final long PROJECTILES_DEFAULT_LIFETIME = 20000; // milliseconds
 }

@@ -5,10 +5,10 @@ import com.github.inside.Config;
 
 class Ball extends Projectile
 {
-    int width     = Config.BALL_INITIAL_WIDTH,
-        height    = Config.BALL_INITIAL_HEIGHT;
-    double speed  = Config.BALL_INITIAL_SPEED;
-    Color color   = Color.RED;
+//    int width     = Config.BALL_INITIAL_WIDTH,
+//        height    = Config.BALL_INITIAL_HEIGHT;
+//    double speed  = Config.BALL_INITIAL_SPEED;
+//    Color color   = Color.RED;
 
     public Ball(Board board)
     {

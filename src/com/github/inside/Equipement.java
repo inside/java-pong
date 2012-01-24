@@ -6,18 +6,40 @@ import java.lang.Math;
 
 class Equipement
 {
-    int width     = Config.BALL_INITIAL_WIDTH,
-        height    = Config.BALL_INITIAL_HEIGHT;
-
-    double speed  = Config.BALL_INITIAL_SPEED,
+    int width,
+        height;
+    double speed,
            x,
            y;
     Board board;
-    Color color   = Color.RED;
+    Color color;
+    String side;
 
+    // Ball
     public Equipement(Board board)
     {
+        if (this instanceof Ball)
+        {
+            this.speed  = Config.BALL_INITIAL_SPEED;
+            this.width  = Config.BALL_INITIAL_WIDTH;
+            this.height = Config.BALL_INITIAL_HEIGHT;
+            this.color  = Color.BLACK;
+        }
+
         this.board = board;
+        this.resetPosition();
+    }
+
+    // Paddle
+    public Equipement(String side, Board board)
+    {
+        System.out.println("Equipement paddle constructor called");
+        this.side   = side;
+        this.speed  = Config.PADDLE_INITIAL_SPEED;
+        this.width  = Config.PADDLE_INITIAL_WIDTH;
+        this.height = Config.PADDLE_INITIAL_HEIGHT;
+        this.color  = Color.BLACK;
+        this.board  = board;
         this.resetPosition();
     }
 

@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import com.github.inside.Config;
 import java.lang.Math;
 import com.github.inside.Ball;
+import com.github.inside.Paddle;
 
 public class Board extends JPanel implements Runnable
 {
@@ -20,12 +21,17 @@ public class Board extends JPanel implements Runnable
     public Ball[] projectiles;
     public int projectileCount = 10;
 
+    public Paddle leftPaddle;
+    public Paddle rightPaddle;
+
     public Board()
     {
         this.setLayout(null);
         this.setBounds(0, 0, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
         this.projectiles = new Ball[this.projectileCount];
+        this.leftPaddle = new Paddle("left", this);
+        this.rightPaddle = new Paddle("right", this);
 
         for (int i = 0; i < this.projectileCount; i++)
         {
@@ -48,6 +54,9 @@ public class Board extends JPanel implements Runnable
         {
             this.projectiles[i].draw(g);
         }
+
+        this.leftPaddle.draw(g);
+        this.rightPaddle.draw(g);
     }
 
     public void updateForNewFrame()
@@ -59,6 +68,9 @@ public class Board extends JPanel implements Runnable
         {
             this.projectiles[i].updateForNewFrame();
         }
+
+        this.leftPaddle.updateForNewFrame();
+        this.rightPaddle.updateForNewFrame();
     }
 
     public void run()

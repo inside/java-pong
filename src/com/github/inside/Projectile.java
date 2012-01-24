@@ -39,8 +39,6 @@ public class Projectile extends Equipement
         // random between 0.0 and 1.0 with one digit after the decimal point
         double y = (double) (Math.round(Math.random() * 10)) / 10.0,
                x = 1;
-        
-//        y = 0.6;
 
         // 50% of the time, go downwards
         if (Math.round(Math.random()) == 0)
@@ -94,7 +92,6 @@ public class Projectile extends Equipement
         return this.y <= 0;
     }
 
-    /*
     public Boolean hitsLeftPaddle()
     {
         return Collision.overlap(this, this.board.leftPaddle);
@@ -104,7 +101,6 @@ public class Projectile extends Equipement
     {
         return Collision.overlap(this, this.board.rightPaddle);
     }
-    */
 
     public void updateForNewFrame()
     {

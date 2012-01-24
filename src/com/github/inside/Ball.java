@@ -5,11 +5,6 @@ import com.github.inside.Config;
 
 class Ball extends Projectile
 {
-//    int width     = Config.BALL_INITIAL_WIDTH,
-//        height    = Config.BALL_INITIAL_HEIGHT;
-//    double speed  = Config.BALL_INITIAL_SPEED;
-//    Color color   = Color.RED;
-
     public Ball(Board board)
     {
         super(board);
@@ -18,10 +13,9 @@ class Ball extends Projectile
     public void updateForNewFrame()
     {
         super.updateForNewFrame();
-//        this.handlePaddleRebound();
+        this.handlePaddleRebound();
     }
 
-    /*
     public void handlePaddleRebound()
     {
         if (this.hitsLeftPaddle())
@@ -39,13 +33,10 @@ class Ball extends Projectile
 //            this.board.rightPlayer.updateScore();
         }
     }
-    */
 
-    /*
     public void reboundsOnPaddle(Equipement paddle)
     {
         this.vX *= -1;
         this.vY = ((this.y + this.height / 2) - (paddle.y + paddle.height / 2)) / (paddle.height / 2);
     }
-    */
 }

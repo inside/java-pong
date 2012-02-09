@@ -2,12 +2,14 @@ package com.github.inside;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
 import com.github.inside.Config;
 import java.lang.Math;
 import com.github.inside.Ball;
 import com.github.inside.Paddle;
+import java.awt.RenderingHints;
 
 public class Board extends JPanel implements Runnable
 {
@@ -47,16 +49,19 @@ public class Board extends JPanel implements Runnable
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.setColor(Color.RED);
-        g.fillRect(100, 0, 25, 25);
+
+        // This fixes flickering on OpenJDK
+        Graphics2D g2D = (Graphics2D) g;
+        g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                             RenderingHints.VALUE_ANTIALIAS_ON);
 
         for (int i = 0; i < this.projectileCount; i++)
         {
-            this.projectiles[i].draw(g);
+            this.projectiles[i].draw(g2D);
         }
 
-        this.leftPaddle.draw(g);
-        this.rightPaddle.draw(g);
+        this.leftPaddle.draw(g2D);
+        this.rightPaddle.draw(g2D);
     }
 
     public void updateForNewFrame()

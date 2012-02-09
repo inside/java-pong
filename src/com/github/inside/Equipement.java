@@ -1,7 +1,8 @@
 package com.github.inside;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.lang.Math;
 
 class Equipement
@@ -43,10 +44,12 @@ class Equipement
         this.resetPosition();
     }
 
-    public void draw(Graphics g)
+    public void draw(Graphics2D g)
     {
         g.setColor(this.color);
-        g.fillRect((int) Math.round(this.x), (int) Math.round(this.y), this.width, this.height);
+        Rectangle2D.Double rectangle = new Rectangle2D.Double();
+        rectangle.setRect(Math.round(this.x), Math.round(this.y), this.width, this.height);
+        g.fill(rectangle);
     }
 
     // Implemented in child classes

@@ -23,14 +23,14 @@ class Ball extends Projectile
             this.x = this.board.leftPaddle.x + this.board.leftPaddle.width;
             this.reboundsOnPaddle(this.board.leftPaddle);
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
-//            this.board.leftPlayer.updateScore();
+            this.board.leftPlayer.updateScore();
         }
         else if (this.hitsRightPaddle())
         {
             this.x = this.board.rightPaddle.x - this.width;
             this.reboundsOnPaddle(this.board.rightPaddle);
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
-//            this.board.rightPlayer.updateScore();
+            this.board.rightPlayer.updateScore();
         }
     }
 

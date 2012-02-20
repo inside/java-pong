@@ -22,9 +22,10 @@ public class Board extends JPanel implements Runnable
     public long time = 0;
     public Ball[] projectiles;
     public int projectileCount = 10;
-
     public Paddle leftPaddle;
     public Paddle rightPaddle;
+    public Player leftPlayer;
+    public Player rightPlayer;
 
     public Board()
     {

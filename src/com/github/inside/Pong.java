@@ -13,12 +13,19 @@ class Pong extends JFrame
     {
         new RepeatingReleasedEventsFixer().install();
         JPanel boardContainer = new JPanel();
+        Player leftPlayer = new Player("left");
+        Player rightPlayer = new Player("right");
+        Board board = new Board();
+        board.leftPlayer = leftPlayer;
+        board.rightPlayer = rightPlayer;
         boardContainer.setLayout(null);
         boardContainer.setBounds(Config.BOARD_CONTAINER_LEFT_MARGIN,
                                  Config.BOARD_CONTAINER_TOP_MARGIN,
                                  Config.BOARD_WIDTH,
                                  Config.BOARD_HEIGHT);
-        boardContainer.add(new Board());
+        boardContainer.add(board);
+        this.add(leftPlayer);
+        this.add(rightPlayer);
         this.getContentPane().setBackground(Color.decode("#f5f5f5"));
         this.setLayout(null);
         this.setTitle("Pong");

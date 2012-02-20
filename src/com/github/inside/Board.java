@@ -77,6 +77,24 @@ public class Board extends JPanel implements Runnable
 
         this.leftPaddle.updateForNewFrame();
         this.rightPaddle.updateForNewFrame();
+
+        // Score
+        if (this.leftPlayer.hasReachedScore())
+        {
+            System.out.println("Left player won with "
+                               + this.leftPlayer.score
+                               + " points. Right player lost with "
+                               + this.rightPlayer.score);
+            this.stop();
+        }
+        else if (this.rightPlayer.hasReachedScore())
+        {
+            System.out.println("Right player won with "
+                               + this.rightPlayer.score
+                               + " points. Left player lost with "
+                               + this.leftPlayer.score);
+            this.stop();
+        }
     }
 
     public void run()
@@ -106,6 +124,8 @@ public class Board extends JPanel implements Runnable
         }
 
         this.stop();
+        this.leftPlayer.resetScore();
+        this.rightPlayer.resetScore();
         this.pursue();
         System.out.println("start called");
     }
@@ -115,6 +135,15 @@ public class Board extends JPanel implements Runnable
         this.started = false;
         this.paused  = true;
         this.stopThread();
+        this.projectiles = new Ball[this.projectileCount];
+
+        for (int i = 0; i < this.projectileCount; i++)
+        {
+            this.projectiles[i] = new Ball(this);
+        }
+
+        this.leftPaddle.resetPosition();
+        this.rightPaddle.resetPosition();
         System.out.println("stop called");
     }
 

@@ -37,10 +37,11 @@ class Player extends JLabel
     public void resetScore()
     {
         this.score = 0;
+        this.setText(String.valueOf(this.score));
     }
 
-    public boolean hasReachedScore(int score)
+    public boolean hasReachedScore()
     {
-        return this.score >= score;
+        return this.score >= Config.MAX_SCORE;
     }
 }

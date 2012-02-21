@@ -10,6 +10,8 @@ import java.lang.Math;
 import com.github.inside.Ball;
 import com.github.inside.Paddle;
 import java.awt.RenderingHints;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Board extends JPanel implements Runnable
 {
@@ -19,9 +21,9 @@ public class Board extends JPanel implements Runnable
     public boolean isRunning = false;
     private long period = 0;
     public long startTime = 0;
+    public long fireProjectileTime = 0;
     public long time = 0;
-    public Ball[] projectiles;
-    public int projectileCount = 10;
+    public List<Projectile> projectiles;
     public Paddle leftPaddle;
     public Paddle rightPaddle;
     public Player leftPlayer;
@@ -32,15 +34,10 @@ public class Board extends JPanel implements Runnable
         this.setLayout(null);
         this.setBounds(0, 0, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
-        this.projectiles = new Ball[this.projectileCount];
+        this.projectiles = new CopyOnWriteArrayList<Projectile>();
+        this.projectiles.add(this.createNewProjectile("ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-
-        for (int i = 0; i < this.projectileCount; i++)
-        {
-            this.projectiles[i] = new Ball(this);
-        }
-
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -56,9 +53,9 @@ public class Board extends JPanel implements Runnable
         g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                              RenderingHints.VALUE_ANTIALIAS_ON);
 
-        for (int i = 0; i < this.projectileCount; i++)
+        for (Projectile projectile : this.projectiles)
         {
-            this.projectiles[i].draw(g2D);
+            projectile.draw(g2D);
         }
 
         this.leftPaddle.draw(g2D);
@@ -70,13 +67,37 @@ public class Board extends JPanel implements Runnable
         this.time = System.currentTimeMillis() - this.startTime;
         this.startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < this.projectileCount; i++)
-        {
-            this.projectiles[i].updateForNewFrame();
-        }
-
+        // Paddles
         this.leftPaddle.updateForNewFrame();
         this.rightPaddle.updateForNewFrame();
+
+        // Projectiles
+        if (this.needsNewProjectile())
+        {
+//            this.initFireProjectileTime();
+
+            if (this.projectiles.size() < Config.MAX_PROJECTILES)
+            {
+                this.projectiles.add(this.createNewProjectile("Ball"));
+            }
+        }
+
+        for (Projectile projectile : this.projectiles)
+        {
+//            if (this.projectiles[i].isLiving(this.startTime))
+//            {
+                projectile.updateForNewFrame();
+//            }
+//            else
+//            {
+//                this.projectiles[i].remove();
+//                delete this.projectiles[i];
+//                this.projectiles = this.projectiles.compact();
+//            }
+        }
+
+        // Power timer
+//        PowerTimer.handlePowerTimer(this);
 
         // Score
         if (this.leftPlayer.hasReachedScore())
@@ -135,13 +156,8 @@ public class Board extends JPanel implements Runnable
         this.started = false;
         this.paused  = true;
         this.stopThread();
-        this.projectiles = new Ball[this.projectileCount];
-
-        for (int i = 0; i < this.projectileCount; i++)
-        {
-            this.projectiles[i] = new Ball(this);
-        }
-
+        this.projectiles = new CopyOnWriteArrayList<Projectile>();
+        this.projectiles.add(this.createNewProjectile("ball"));
         this.leftPaddle.resetPosition();
         this.rightPaddle.resetPosition();
         System.out.println("stop called");
@@ -209,4 +225,50 @@ public class Board extends JPanel implements Runnable
 
         return this.period - processingTime;
     }
+
+    public Projectile createNewProjectile(String... name)
+    {
+        Projectile projectile = new Ball(this);
+        return projectile;
+//        return new Ball(this);
+        /*
+        if (name == null)
+        {
+            name = Helper.getWeightedRandomValue(this.availableWeightedProjectiles);
+        }
+        if (name.equals("ball"))
+        {
+            projectile = new Ball(this);
+        }
+        else if (name.equals("paddle-speed-power"))
+        {
+            projectile = new PaddleSpeedPower();
+        }
+        else if (name.equals("opponents-paddle-speed-power"))
+        {
+            projectile = new OpponentsPaddleSpeedPower();
+        }
+        else if (name.equals("paddle-height-power"))
+        {
+            projectile = new PaddleHeightPower();
+        }
+        else
+        {
+            System.out.println("try to add an unknown projectile");
+        }
+
+        return projectile;
+        */
+    }
+
+    public boolean needsNewProjectile()
+    {
+        return true;
+//        return this.fireProjectileTime <= this.startTime;
+    }
+
+//    public void initFireProjectileTime()
+//    {
+//        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.startTime;
+//    }
 }

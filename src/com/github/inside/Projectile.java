@@ -58,7 +58,7 @@ public class Projectile extends Equipement
         return new Vector(new double[] {x, y}).direction();
     }
 
-    public boolean isLiving(int currentTime)
+    public boolean isLiving(long currentTime)
     {
         if (this.diesNow)
         {

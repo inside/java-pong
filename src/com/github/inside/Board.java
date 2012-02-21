@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import com.github.inside.Config;
 import java.lang.Math;
 import com.github.inside.Ball;
+import com.github.inside.Helper;
+import com.github.inside.WeightedValue;
 import com.github.inside.Paddle;
 import java.awt.RenderingHints;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Board extends JPanel implements Runnable
     public Paddle rightPaddle;
     public Player leftPlayer;
     public Player rightPlayer;
+    public WeightedValue[] weightedValues;
 
     public Board()
     {
@@ -38,6 +41,11 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
+        this.weightedValues = new WeightedValue[4];
+        this.weightedValues[0] = new WeightedValue("ball",                         70);
+        this.weightedValues[1] = new WeightedValue("paddle-height-power",          10);
+        this.weightedValues[2] = new WeightedValue("opponents-paddle-speed-power", 10);
+        this.weightedValues[3] = new WeightedValue("paddle-speed-power",           10);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -74,26 +82,24 @@ public class Board extends JPanel implements Runnable
         // Projectiles
         if (this.needsNewProjectile())
         {
-//            this.initFireProjectileTime();
-
-            if (this.projectiles.size() < Config.MAX_PROJECTILES)
-            {
-                this.projectiles.add(this.createNewProjectile("Ball"));
-            }
+            this.initFireProjectileTime();
+            this.projectiles.add(this.createNewProjectile("random"));
         }
+
+        int i = 0;
 
         for (Projectile projectile : this.projectiles)
         {
-//            if (this.projectiles[i].isLiving(this.startTime))
-//            {
+            if (projectile.isLiving(this.startTime))
+            {
                 projectile.updateForNewFrame();
-//            }
-//            else
-//            {
-//                this.projectiles[i].remove();
-//                delete this.projectiles[i];
-//                this.projectiles = this.projectiles.compact();
-//            }
+            }
+            else
+            {
+                this.projectiles.remove(i);
+            }
+
+            i++;
         }
 
         // Power timer
@@ -226,31 +232,39 @@ public class Board extends JPanel implements Runnable
         return this.period - processingTime;
     }
 
-    public Projectile createNewProjectile(String... name)
+    public Projectile createNewProjectile(String name)
     {
-        Projectile projectile = new Ball(this);
-        return projectile;
-//        return new Ball(this);
-        /*
-        if (name == null)
+        Projectile projectile = null;
+
+        if (name.equals("random"))
         {
-            name = Helper.getWeightedRandomValue(this.availableWeightedProjectiles);
+            name = Helper.getWeightedRandomValue(this.weightedValues);
         }
+
+        System.out.println("name is " + name);
+
         if (name.equals("ball"))
         {
             projectile = new Ball(this);
+            System.out.println("name is ball");
         }
         else if (name.equals("paddle-speed-power"))
         {
-            projectile = new PaddleSpeedPower();
+            projectile = new Ball(this);
+//            projectile = new PaddleSpeedPower();
+            System.out.println("name is paddle speed power");
         }
         else if (name.equals("opponents-paddle-speed-power"))
         {
-            projectile = new OpponentsPaddleSpeedPower();
+            projectile = new Ball(this);
+//            projectile = new OpponentsPaddleSpeedPower();
+            System.out.println("name is opponent paddle speed power");
         }
         else if (name.equals("paddle-height-power"))
         {
-            projectile = new PaddleHeightPower();
+            projectile = new Ball(this);
+//            projectile = new PaddleHeightPower();
+            System.out.println("name is paddle height power");
         }
         else
         {
@@ -258,17 +272,15 @@ public class Board extends JPanel implements Runnable
         }
 
         return projectile;
-        */
     }
 
     public boolean needsNewProjectile()
     {
-        return true;
-//        return this.fireProjectileTime <= this.startTime;
+        return this.fireProjectileTime <= this.startTime && this.projectiles.size() < Config.MAX_PROJECTILES;
     }
 
-//    public void initFireProjectileTime()
-//    {
-//        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.startTime;
-//    }
+    public void initFireProjectileTime()
+    {
+        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.startTime;
+    }
 }

@@ -11,6 +11,7 @@ import com.github.inside.Ball;
 import com.github.inside.Helper;
 import com.github.inside.WeightedValue;
 import com.github.inside.Paddle;
+import com.github.inside.PaddleSpeedPower;
 import java.awt.RenderingHints;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -41,11 +42,11 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new WeightedValue[4];
-        this.weightedValues[0] = new WeightedValue("ball",                         70);
-        this.weightedValues[1] = new WeightedValue("paddle-height-power",          10);
-        this.weightedValues[2] = new WeightedValue("opponents-paddle-speed-power", 10);
-        this.weightedValues[3] = new WeightedValue("paddle-speed-power",           10);
+        this.weightedValues = new WeightedValue[2];
+        this.weightedValues[0] = new WeightedValue("ball",                         1);
+        this.weightedValues[1] = new WeightedValue("paddle-speed-power",           99);
+//        this.weightedValues[2] = new WeightedValue("paddle-height-power",          10);
+//        this.weightedValues[3] = new WeightedValue("opponents-paddle-speed-power", 10);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -103,7 +104,7 @@ public class Board extends JPanel implements Runnable
         }
 
         // Power timer
-//        PowerTimer.handlePowerTimer(this);
+        PowerTimer.handlePowerTimer();
 
         // Score
         if (this.leftPlayer.hasReachedScore())
@@ -181,7 +182,7 @@ public class Board extends JPanel implements Runnable
         this.started = true;
         this.paused = false;
         this.startTime = System.currentTimeMillis();
-//        this.initFireProjectileTime();
+        this.initFireProjectileTime();
         this.startThread();
         System.out.println("pursue called");
     }
@@ -241,30 +242,21 @@ public class Board extends JPanel implements Runnable
             name = Helper.getWeightedRandomValue(this.weightedValues);
         }
 
-        System.out.println("name is " + name);
-
         if (name.equals("ball"))
         {
             projectile = new Ball(this);
-            System.out.println("name is ball");
         }
         else if (name.equals("paddle-speed-power"))
         {
-            projectile = new Ball(this);
-//            projectile = new PaddleSpeedPower();
-            System.out.println("name is paddle speed power");
+            projectile = new PaddleSpeedPower(this);
         }
-        else if (name.equals("opponents-paddle-speed-power"))
-        {
-            projectile = new Ball(this);
-//            projectile = new OpponentsPaddleSpeedPower();
-            System.out.println("name is opponent paddle speed power");
-        }
-        else if (name.equals("paddle-height-power"))
-        {
-            projectile = new Ball(this);
-//            projectile = new PaddleHeightPower();
-            System.out.println("name is paddle height power");
+//        else if (name.equals("opponents-paddle-speed-power"))
+//        {
+//            projectile = new OpponentsPaddleSpeedPower(this);
+//        }
+//        else if (name.equals("paddle-height-power"))
+//        {
+//            projectile = new PaddleHeightPower(this);
         }
         else
         {

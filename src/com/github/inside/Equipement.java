@@ -26,6 +26,13 @@ class Equipement
             this.height = Config.BALL_INITIAL_HEIGHT;
             this.color  = Color.BLACK;
         }
+        else if (this instanceof PaddlePower)
+        {
+            this.speed  = Config.POWER_PROJECTILE_INITIAL_SPEED;
+            this.width  = Config.POWER_PROJECTILE_INITIAL_WIDTH;
+            this.height = Config.POWER_PROJECTILE_INITIAL_HEIGHT;
+            this.color  = Color.ORANGE;
+        }
 
         this.board = board;
         this.resetPosition();

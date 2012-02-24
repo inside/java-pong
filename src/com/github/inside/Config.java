@@ -29,7 +29,7 @@ class Config
     public static final int POWER_PROJECTILE_INITIAL_WIDTH = 10;
     public static final int POWER_PROJECTILE_INITIAL_HEIGHT = 10;
 
-    public static final int POWER_LIFETIME = 10000; // milliseconds
+    public static final long POWER_LIFETIME = 10000; // milliseconds
 
     public static final int MAX_PROJECTILES = 10;
     public static final long PROJECTILES_DEFAULT_LIFETIME = 20000; // milliseconds

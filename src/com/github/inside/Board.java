@@ -11,7 +11,6 @@ import com.github.inside.Ball;
 import com.github.inside.Helper;
 import com.github.inside.WeightedValue;
 import com.github.inside.Paddle;
-import com.github.inside.PaddleSpeedPower;
 import java.awt.RenderingHints;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -44,10 +43,10 @@ public class Board extends JPanel implements Runnable
         this.rightPaddle = new Paddle("right", this);
         this.weightedValues = new WeightedValue[2];
         this.weightedValues[0] = new WeightedValue("ball",                         1);
-        this.weightedValues[1] = new WeightedValue("paddle-speed-power",           99);
-//        this.weightedValues[1] = new WeightedValue("paddle-slowness-power",          99);
-//        this.weightedValues[2] = new WeightedValue("paddle-height-power",          10);
-//        this.weightedValues[3] = new WeightedValue("opponents-paddle-speed-power", 10);
+//        this.weightedValues[] = new WeightedValue("paddle-speed-power",           99);
+//        this.weightedValues[] = new WeightedValue("paddle-slowness-power",         99);
+        this.weightedValues[1] = new WeightedValue("large-paddle-power",          99);
+//        this.weightedValues[this.weightedValues.length] = new WeightedValue("opponents-paddle-speed-power", 10);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -254,6 +253,10 @@ public class Board extends JPanel implements Runnable
         else if (name.equals("paddle-slowness-power"))
         {
             projectile = new PaddleSlownessPower(this);
+        }
+        else if (name.equals("large-paddle-power"))
+        {
+            projectile = new LargePaddlePower(this);
         }
 //        else if (name.equals("opponents-paddle-speed-power"))
 //        {

@@ -32,7 +32,7 @@ class Equipement
             this.width  = Config.POWER_PROJECTILE_INITIAL_WIDTH;
             this.height = Config.POWER_PROJECTILE_INITIAL_HEIGHT;
 
-            if (this instanceof PaddleSpeedPower)
+            if (this instanceof PaddleSpeedPower || this instanceof LargePaddlePower)
             {
                 this.color = Color.ORANGE;
             }

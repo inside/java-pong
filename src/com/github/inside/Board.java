@@ -14,6 +14,9 @@ import com.github.inside.Paddle;
 import java.awt.RenderingHints;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.lang.Class;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class Board extends JPanel implements Runnable
 {
@@ -38,17 +41,19 @@ public class Board extends JPanel implements Runnable
         this.setBounds(0, 0, Config.BOARD_WIDTH, Config.BOARD_HEIGHT);
         this.period = Math.round((long) 1000 / Config.FRAME_RATE);
         this.projectiles = new CopyOnWriteArrayList<Projectile>();
-        this.projectiles.add(this.createNewProjectile("ball"));
+        this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new WeightedValue[2];
-        this.weightedValues[0] = new WeightedValue("ball",                         1);
-//        this.weightedValues[] = new WeightedValue("paddle-speed-power",           99);
-//        this.weightedValues[] = new WeightedValue("paddle-slowness-power",         99);
-//        this.weightedValues[1] = new WeightedValue("large-paddle-power",          99);
-//        this.weightedValues[1] = new WeightedValue("small-paddle-power",          99);
-//        this.weightedValues[1] = new WeightedValue("opponents-paddle-speed-power", 99);
-        this.weightedValues[1] = new WeightedValue("opponents-paddle-slowness-power", 99);
+        this.weightedValues = new WeightedValue[9];
+        this.weightedValues[0] = new WeightedValue("com.github.inside.Ball",                        68);
+        this.weightedValues[1] = new WeightedValue("com.github.inside.PaddleSpeedPower",             4);
+        this.weightedValues[2] = new WeightedValue("com.github.inside.OpponentsPaddleSpeedPower",    4);
+        this.weightedValues[3] = new WeightedValue("com.github.inside.PaddleSlownessPower",          4);
+        this.weightedValues[4] = new WeightedValue("com.github.inside.OpponentsPaddleSlownessPower", 4);
+        this.weightedValues[5] = new WeightedValue("com.github.inside.LargePaddlePower",             4);
+        this.weightedValues[6] = new WeightedValue("com.github.inside.OpponentsLargePaddlePower",    4);
+        this.weightedValues[7] = new WeightedValue("com.github.inside.SmallPaddlePower",             4);
+        this.weightedValues[8] = new WeightedValue("com.github.inside.OpponentsSmallPaddlePower",    4);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -166,7 +171,7 @@ public class Board extends JPanel implements Runnable
         this.paused  = true;
         this.stopThread();
         this.projectiles = new CopyOnWriteArrayList<Projectile>();
-        this.projectiles.add(this.createNewProjectile("ball"));
+        this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle.resetPosition();
         this.rightPaddle.resetPosition();
         System.out.println("stop called");
@@ -244,37 +249,31 @@ public class Board extends JPanel implements Runnable
             name = Helper.getWeightedRandomValue(this.weightedValues);
         }
 
-        if (name.equals("ball"))
+        try
         {
-            projectile = new Ball(this);
+            Class<?> projectileClass = Class.forName(name);
+            Constructor<?> constructor = projectileClass.getConstructor(new Class<?>[] {Board.class});
+            projectile = (Projectile) constructor.newInstance(this);
         }
-        else if (name.equals("paddle-speed-power"))
+        catch (NoSuchMethodException x)
         {
-            projectile = new PaddleSpeedPower(this);
+            System.out.println("NoSuchMethodException was catched from Board.java");
         }
-        else if (name.equals("paddle-slowness-power"))
+        catch (ClassNotFoundException x)
         {
-            projectile = new PaddleSlownessPower(this);
+            System.out.println("ClassNotFoundException was catched from Board.java");
         }
-        else if (name.equals("large-paddle-power"))
+        catch (InstantiationException x)
         {
-            projectile = new LargePaddlePower(this);
+            System.out.println("InstantiationException was catched from Board.java");
         }
-        else if (name.equals("small-paddle-power"))
+        catch (IllegalAccessException x)
         {
-            projectile = new SmallPaddlePower(this);
+            System.out.println("IllegalAccessException was catched from Board.java");
         }
-        else if (name.equals("opponents-paddle-speed-power"))
+        catch (InvocationTargetException x)
         {
-            projectile = new OpponentsPaddleSpeedPower(this);
-        }
-        else if (name.equals("opponents-paddle-slowness-power"))
-        {
-            projectile = new OpponentsPaddleSlownessPower(this);
-        }
-        else
-        {
-            System.out.println("try to add an unknown projectile");
+            System.out.println("InvocationTargetException was catched from Board.java");
         }
 
         return projectile;

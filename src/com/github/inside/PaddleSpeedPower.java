@@ -19,7 +19,7 @@ class PaddleSpeedPower extends PaddlePower
             this.diesNow = true;
             this.side = "left";
             this.initTime = System.currentTimeMillis();
-            PowerTimer.leftPaddlePowers.put("paddle-speed-power", this);
+            PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
         else if (this.hitsRightPaddle())
         {
@@ -27,7 +27,7 @@ class PaddleSpeedPower extends PaddlePower
             this.diesNow = true;
             this.side = "right";
             this.initTime = System.currentTimeMillis();
-            PowerTimer.rightPaddlePowers.put("paddle-speed-power", this);
+            PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
         }
     }
 

@@ -2,9 +2,9 @@ package com.github.inside;
 
 import com.github.inside.PowerTimer;
 
-class LargePaddlePower extends PaddlePower
+class OpponentsLargePaddlePower extends PaddlePower
 {
-    public LargePaddlePower(Board board)
+    public OpponentsLargePaddlePower(Board board)
     {
         super(board);
     }
@@ -13,7 +13,7 @@ class LargePaddlePower extends PaddlePower
     {
         super.updateForNewFrame();
 
-        if (this.hitsLeftPaddle())
+        if (this.hitsRightPaddle())
         {
             this.board.leftPaddle.height = Config.PADDLE_MAX_HEIGHT;
             this.diesNow = true;
@@ -21,7 +21,7 @@ class LargePaddlePower extends PaddlePower
             this.initTime = System.currentTimeMillis();
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
-        else if (this.hitsRightPaddle())
+        else if (this.hitsLeftPaddle())
         {
             this.board.rightPaddle.height = Config.PADDLE_MAX_HEIGHT;
             this.diesNow = true;

@@ -34,13 +34,15 @@ class Equipement
 
             if (this instanceof PaddleSpeedPower
                     || this instanceof LargePaddlePower
-                    || this instanceof OpponentsPaddleSlownessPower)
+                    || this instanceof OpponentsPaddleSlownessPower
+                    || this instanceof OpponentsSmallPaddlePower)
             {
                 this.color = Color.ORANGE;
             }
             else if (this instanceof PaddleSlownessPower
                     || this instanceof SmallPaddlePower
-                    || this instanceof OpponentsPaddleSpeedPower)
+                    || this instanceof OpponentsPaddleSpeedPower
+                    || this instanceof OpponentsLargePaddlePower)
             {
                 this.color = Color.RED;
             }

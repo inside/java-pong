@@ -45,7 +45,8 @@ public class Board extends JPanel implements Runnable
         this.weightedValues[0] = new WeightedValue("ball",                         1);
 //        this.weightedValues[] = new WeightedValue("paddle-speed-power",           99);
 //        this.weightedValues[] = new WeightedValue("paddle-slowness-power",         99);
-        this.weightedValues[1] = new WeightedValue("large-paddle-power",          99);
+//        this.weightedValues[1] = new WeightedValue("large-paddle-power",          99);
+        this.weightedValues[1] = new WeightedValue("small-paddle-power",          99);
 //        this.weightedValues[this.weightedValues.length] = new WeightedValue("opponents-paddle-speed-power", 10);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
@@ -257,6 +258,10 @@ public class Board extends JPanel implements Runnable
         else if (name.equals("large-paddle-power"))
         {
             projectile = new LargePaddlePower(this);
+        }
+        else if (name.equals("small-paddle-power"))
+        {
+            projectile = new SmallPaddlePower(this);
         }
 //        else if (name.equals("opponents-paddle-speed-power"))
 //        {

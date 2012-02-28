@@ -38,7 +38,8 @@ class Equipement
                 this.color = Color.ORANGE;
             }
             else if (this instanceof PaddleSlownessPower
-                    || this instanceof SmallPaddlePower)
+                    || this instanceof SmallPaddlePower
+                    || this instanceof OpponentsPaddleSpeedPower)
             {
                 this.color = Color.RED;
             }

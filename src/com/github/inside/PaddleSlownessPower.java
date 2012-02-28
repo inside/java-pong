@@ -2,9 +2,9 @@ package com.github.inside;
 
 import com.github.inside.PowerTimer;
 
-class PaddleSpeedPower extends PaddlePower
+class PaddleSlownessPower extends PaddlePower
 {
-    public PaddleSpeedPower(Board board)
+    public PaddleSlownessPower(Board board)
     {
         super(board);
     }
@@ -15,19 +15,19 @@ class PaddleSpeedPower extends PaddlePower
 
         if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.speed = Config.PADDLE_MAX_SPEED;
+            this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "left";
             this.initTime = System.currentTimeMillis();
-            PowerTimer.leftPaddlePowers.put("paddle-speed-power", this);
+            PowerTimer.leftPaddlePowers.put("paddle-slowness-power", this);
         }
         else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.speed = Config.PADDLE_MAX_SPEED;
+            this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "right";
             this.initTime = System.currentTimeMillis();
-            PowerTimer.rightPaddlePowers.put("paddle-speed-power", this);
+            PowerTimer.rightPaddlePowers.put("paddle-slowness-power", this);
         }
     }
 
@@ -43,15 +43,13 @@ class PaddleSpeedPower extends PaddlePower
         }
     }
 
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
+    // super method needs to be called to avoid NoSuchMethodException
     public long getPowerInitTime()
     {
         return super.getPowerInitTime();
     }
 
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
+    // super method needs to be called to avoid NoSuchMethodException
     public long getStartTime()
     {
         return super.getStartTime();

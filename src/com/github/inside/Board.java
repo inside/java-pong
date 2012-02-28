@@ -251,6 +251,10 @@ public class Board extends JPanel implements Runnable
         {
             projectile = new PaddleSpeedPower(this);
         }
+        else if (name.equals("paddle-slowness-power"))
+        {
+            projectile = new PaddleSlownessPower(this);
+        }
 //        else if (name.equals("opponents-paddle-speed-power"))
 //        {
 //            projectile = new OpponentsPaddleSpeedPower(this);

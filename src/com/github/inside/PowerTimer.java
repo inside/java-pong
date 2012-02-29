@@ -1,15 +1,17 @@
 package com.github.inside;
 
 import java.util.Map;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.Long;
 
 class PowerTimer
 {
-    public static HashMap<String, Object> leftPaddlePowers = new HashMap<String, Object>();
-    public static HashMap<String, Object> rightPaddlePowers = new HashMap<String, Object>();
+    // The parameters were set on the advice of:
+    // http://ria101.wordpress.com/2011/12/12/concurrenthashmap-avoid-a-common-misuse/
+    public static ConcurrentHashMap<String, Object> leftPaddlePowers = new ConcurrentHashMap<String, Object>(8, 0.9f, 1);
+    public static ConcurrentHashMap<String, Object> rightPaddlePowers = new ConcurrentHashMap<String, Object>(8, 0.9f, 1);
 
     public static void handlePowerTimer()
     {

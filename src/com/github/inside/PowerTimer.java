@@ -23,11 +23,11 @@ class PowerTimer
                 {
                     Class<?> c = e.getValue().getClass();
                     Method getPowerInitTime = c.getDeclaredMethod("getPowerInitTime");
-                    Method getStartTime = c.getDeclaredMethod("getStartTime");
+                    Method getCurrentTime = c.getDeclaredMethod("getCurrentTime");
                     long powerInitTime = Long.parseLong(getPowerInitTime.invoke(e.getValue()).toString());
-                    long startTime = Long.parseLong(getStartTime.invoke(e.getValue()).toString());
+                    long currentTime = Long.parseLong(getCurrentTime.invoke(e.getValue()).toString());
 
-                    if (powerInitTime + Config.POWER_LIFETIME <= startTime)
+                    if (powerInitTime + Config.POWER_LIFETIME <= currentTime)
                     {
                         Method action = c.getDeclaredMethod("action");
                         action.invoke(e.getValue());
@@ -56,11 +56,11 @@ class PowerTimer
                 {
                     Class<?> c = e.getValue().getClass();
                     Method getPowerInitTime = c.getDeclaredMethod("getPowerInitTime");
-                    Method getStartTime = c.getDeclaredMethod("getStartTime");
+                    Method getCurrentTime = c.getDeclaredMethod("getCurrentTime");
                     long powerInitTime = Long.parseLong(getPowerInitTime.invoke(e.getValue()).toString());
-                    long startTime = Long.parseLong(getStartTime.invoke(e.getValue()).toString());
+                    long currentTime = Long.parseLong(getCurrentTime.invoke(e.getValue()).toString());
 
-                    if (powerInitTime + Config.POWER_LIFETIME <= startTime)
+                    if (powerInitTime + Config.POWER_LIFETIME <= currentTime)
                     {
                         Method action = c.getDeclaredMethod("action");
                         action.invoke(e.getValue());

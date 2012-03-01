@@ -52,8 +52,8 @@ class OpponentsLargePaddlePower extends PaddlePower
 
     // The method needs to be implemented here to avoid a NoSuchMethodException.
     // The real implementation is done in the parent.
-    public long getStartTime()
+    public long getCurrentTime()
     {
-        return super.getStartTime();
+        return super.getCurrentTime();
     }
 }

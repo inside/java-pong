@@ -50,8 +50,8 @@ class PaddleSlownessPower extends PaddlePower
     }
 
     // super method needs to be called to avoid NoSuchMethodException
-    public long getStartTime()
+    public long getCurrentTime()
     {
-        return super.getStartTime();
+        return super.getCurrentTime();
     }
 }

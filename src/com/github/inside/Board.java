@@ -25,7 +25,7 @@ public class Board extends JPanel implements Runnable
     private boolean paused = false;
     public boolean isRunning = false;
     private long period = 0;
-    public long startTime = 0;
+    public long currentTime = 0;
     public long fireProjectileTime = 0;
     public long time = 0;
     public List<Projectile> projectiles;
@@ -80,8 +80,8 @@ public class Board extends JPanel implements Runnable
 
     public void updateForNewFrame()
     {
-        this.time = System.currentTimeMillis() - this.startTime;
-        this.startTime = System.currentTimeMillis();
+        this.time = System.currentTimeMillis() - this.currentTime;
+        this.currentTime = System.currentTimeMillis();
 
         // Paddles
         this.leftPaddle.updateForNewFrame();
@@ -98,7 +98,7 @@ public class Board extends JPanel implements Runnable
 
         for (Projectile projectile : this.projectiles)
         {
-            if (projectile.isLiving(this.startTime))
+            if (projectile.isLiving(this.currentTime))
             {
                 projectile.updateForNewFrame();
             }
@@ -188,7 +188,7 @@ public class Board extends JPanel implements Runnable
     {
         this.started = true;
         this.paused = false;
-        this.startTime = System.currentTimeMillis();
+        this.currentTime = System.currentTimeMillis();
         this.initFireProjectileTime();
         this.startThread();
         System.out.println("pursue called");
@@ -230,7 +230,7 @@ public class Board extends JPanel implements Runnable
 
     private long getNextFrameDelay()
     {
-        long processingTime = System.currentTimeMillis() - this.startTime;
+        long processingTime = System.currentTimeMillis() - this.currentTime;
 
         if (this.period < processingTime)
         {
@@ -281,11 +281,11 @@ public class Board extends JPanel implements Runnable
 
     public boolean needsNewProjectile()
     {
-        return this.fireProjectileTime <= this.startTime && this.projectiles.size() < Config.MAX_PROJECTILES;
+        return this.fireProjectileTime <= this.currentTime && this.projectiles.size() < Config.MAX_PROJECTILES;
     }
 
     public void initFireProjectileTime()
     {
-        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.startTime;
+        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.currentTime;
     }
 }

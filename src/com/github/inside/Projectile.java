@@ -74,22 +74,22 @@ public class Projectile extends Equipement
 
     public Boolean hitsLeftWall()
     {
-        return this.x <= 0;
+        return this.x < 0;
     }
 
     public Boolean hitsRightWall()
     {
-        return this.x >= Config.BOARD_WIDTH - this.width;
+        return this.x > Config.BOARD_WIDTH - this.width;
     }
 
     public Boolean hitsFloor()
     {
-        return this.y >= Config.BOARD_HEIGHT - this.height;
+        return this.y > Config.BOARD_HEIGHT - this.height;
     }
 
     public Boolean hitsCeiling()
     {
-        return this.y <= 0;
+        return this.y < 0;
     }
 
     public Boolean hitsLeftPaddle()

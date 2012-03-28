@@ -18,7 +18,7 @@ class OpponentsPaddleSlownessPower extends PaddlePower
             this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "left";
-            this.initTime = System.currentTimeMillis();
+            this.initTime = this.getCurrentTime();
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
         else if (this.hitsLeftPaddle())
@@ -26,7 +26,7 @@ class OpponentsPaddleSlownessPower extends PaddlePower
             this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "right";
-            this.initTime = System.currentTimeMillis();
+            this.initTime = this.getCurrentTime();
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
         }
     }

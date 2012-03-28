@@ -17,9 +17,4 @@ class PaddlePower extends Projectile
     {
         return this.initTime;
     }
-
-    public long getCurrentTime()
-    {
-        return this.board.currentTime;
-    }
 }

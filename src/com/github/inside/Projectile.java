@@ -17,7 +17,7 @@ public class Projectile extends Equipement
     public Projectile(Board board)
     {
         super(board);
-        this.creationTime = System.currentTimeMillis();
+        this.creationTime = this.getCurrentTime();
         this.diesIn = this.creationTime + this.lifeTime;
     }
 
@@ -130,5 +130,10 @@ public class Projectile extends Equipement
             this.y = Config.BOARD_HEIGHT - this.height;
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
         }
+    }
+
+    public long getCurrentTime()
+    {
+        return this.board.currentTime;
     }
 }

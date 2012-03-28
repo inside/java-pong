@@ -26,6 +26,8 @@ public class Board extends JPanel implements Runnable
     public boolean isRunning = false;
     private long period = 0;
     public long currentTime = 0;
+    public long pauseDuration = 0;
+    public long pausedAtTime = 0;
     public long fireProjectileTime = 0;
     public long time = 0;
     public List<Projectile> projectiles;
@@ -80,8 +82,8 @@ public class Board extends JPanel implements Runnable
 
     public void updateForNewFrame()
     {
-        this.time = System.currentTimeMillis() - this.currentTime;
-        this.currentTime = System.currentTimeMillis();
+        this.time = this.getPeriodProcessingTime();
+        this.initCurrentTime();
 
         // Paddles
         this.leftPaddle.updateForNewFrame();
@@ -181,6 +183,7 @@ public class Board extends JPanel implements Runnable
     {
         this.started = true;
         this.paused  = true;
+        this.pausedAtTime = System.currentTimeMillis();
         this.stopThread();
     }
 
@@ -188,7 +191,10 @@ public class Board extends JPanel implements Runnable
     {
         this.started = true;
         this.paused = false;
-        this.currentTime = System.currentTimeMillis();
+        // initPauseDuration must be called before initCurrentTime
+        // as the current time depends on the pause duration
+        this.initPauseDuration();
+        this.initCurrentTime();
         this.initFireProjectileTime();
         this.startThread();
         System.out.println("pursue called");
@@ -230,7 +236,7 @@ public class Board extends JPanel implements Runnable
 
     private long getNextFrameDelay()
     {
-        long processingTime = System.currentTimeMillis() - this.currentTime;
+        long processingTime = this.getPeriodProcessingTime();
 
         if (this.period < processingTime)
         {
@@ -238,6 +244,11 @@ public class Board extends JPanel implements Runnable
         }
 
         return this.period - processingTime;
+    }
+
+    public long getPeriodProcessingTime()
+    {
+        return System.currentTimeMillis() - this.pauseDuration - this.currentTime;
     }
 
     public Projectile createNewProjectile(String name)
@@ -287,5 +298,15 @@ public class Board extends JPanel implements Runnable
     public void initFireProjectileTime()
     {
         this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.currentTime;
+    }
+
+    public void initCurrentTime()
+    {
+        this.currentTime = System.currentTimeMillis() - this.pauseDuration;
+    }
+
+    public void initPauseDuration()
+    {
+        this.pauseDuration += System.currentTimeMillis() - this.pausedAtTime;
     }
 }

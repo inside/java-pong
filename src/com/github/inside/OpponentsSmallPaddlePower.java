@@ -18,7 +18,7 @@ class OpponentsSmallPaddlePower extends PaddlePower
             this.board.leftPaddle.height = Config.PADDLE_MIN_HEIGHT;
             this.diesNow = true;
             this.side = "left";
-            this.initTime = System.currentTimeMillis();
+            this.initTime = this.getCurrentTime();
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
         else if (this.hitsLeftPaddle())
@@ -26,7 +26,7 @@ class OpponentsSmallPaddlePower extends PaddlePower
             this.board.rightPaddle.height = Config.PADDLE_MIN_HEIGHT;
             this.diesNow = true;
             this.side = "right";
-            this.initTime = System.currentTimeMillis();
+            this.initTime = this.getCurrentTime();
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
         }
     }

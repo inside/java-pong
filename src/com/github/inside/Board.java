@@ -178,8 +178,10 @@ public class Board extends JPanel implements Runnable
         this.stopThread();
         this.projectiles = new CopyOnWriteArrayList<Projectile>();
         this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
-        this.leftPaddle.resetPosition();
-        this.rightPaddle.resetPosition();
+        this.leftPaddle.reset();
+        this.rightPaddle.reset();
+        PowerTimer.leftPaddlePowers.clear();
+        PowerTimer.rightPaddlePowers.clear();
         System.out.println("stop called");
     }
 

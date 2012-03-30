@@ -80,4 +80,12 @@ class Paddle extends Equipement
             this.y = y;
         }
     }
+
+    public void reset()
+    {
+        this.resetPosition();
+        this.resetColor();
+        this.resetHeight();
+        this.resetSpeed();
+    }
 }

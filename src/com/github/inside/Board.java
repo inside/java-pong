@@ -46,8 +46,8 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new WeightedValue[11];
-        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             60);
+        this.weightedValues = new WeightedValue[13];
+        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             52);
         this.weightedValues[1]  = new WeightedValue("com.github.inside.PaddleSpeedPower",                 4);
         this.weightedValues[2]  = new WeightedValue("com.github.inside.OpponentsPaddleSpeedPower",        4);
         this.weightedValues[3]  = new WeightedValue("com.github.inside.PaddleSlownessPower",              4);
@@ -58,6 +58,8 @@ public class Board extends JPanel implements Runnable
         this.weightedValues[8]  = new WeightedValue("com.github.inside.OpponentsSmallPaddlePower",        4);
         this.weightedValues[9]  = new WeightedValue("com.github.inside.PaddleInvisibilityPower",          4);
         this.weightedValues[10] = new WeightedValue("com.github.inside.OpponentsPaddleInvisibilityPower", 4);
+        this.weightedValues[11] = new WeightedValue("com.github.inside.PaddleImmobilityPower",            4);
+        this.weightedValues[12] = new WeightedValue("com.github.inside.OpponentsPaddleImmobilityPower",   4);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));

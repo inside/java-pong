@@ -1,5 +1,7 @@
 package com.github.inside;
 
+import java.awt.Color;
+
 class Paddle extends Equipement
 {
     public boolean isGoingUp   = false,
@@ -39,6 +41,11 @@ class Paddle extends Equipement
     public void resetSpeed()
     {
         this.speed = Config.PADDLE_INITIAL_SPEED;
+    }
+
+    public void resetColor()
+    {
+        this.color = Config.PADDLE_COLOR;
     }
 
     public void resetHeight()

@@ -1,5 +1,7 @@
 package com.github.inside;
 
+import java.awt.Color;
+
 class Config
 {
     public static final int FRAME_RATE = 60; // 30 to 100 images per second
@@ -33,4 +35,6 @@ class Config
 
     public static final int MAX_PROJECTILES = 10;
     public static final long PROJECTILES_DEFAULT_LIFETIME = 20000; // milliseconds
+
+    public static final Color PADDLE_COLOR = Color.BLACK;
 }

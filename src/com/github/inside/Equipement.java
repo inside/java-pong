@@ -19,35 +19,6 @@ class Equipement
     // Ball
     public Equipement(Board board)
     {
-        if (this instanceof Ball)
-        {
-            this.speed  = Config.BALL_INITIAL_SPEED;
-            this.width  = Config.BALL_INITIAL_WIDTH;
-            this.height = Config.BALL_INITIAL_HEIGHT;
-            this.color  = Color.BLACK;
-        }
-        else if (this instanceof PaddlePower)
-        {
-            this.speed  = Config.POWER_PROJECTILE_INITIAL_SPEED;
-            this.width  = Config.POWER_PROJECTILE_INITIAL_WIDTH;
-            this.height = Config.POWER_PROJECTILE_INITIAL_HEIGHT;
-
-            if (this instanceof PaddleSpeedPower
-                    || this instanceof LargePaddlePower
-                    || this instanceof OpponentsPaddleSlownessPower
-                    || this instanceof OpponentsSmallPaddlePower)
-            {
-                this.color = Color.ORANGE;
-            }
-            else if (this instanceof PaddleSlownessPower
-                    || this instanceof SmallPaddlePower
-                    || this instanceof OpponentsPaddleSpeedPower
-                    || this instanceof OpponentsLargePaddlePower)
-            {
-                this.color = Color.RED;
-            }
-        }
-
         this.board = board;
         this.resetPosition();
     }

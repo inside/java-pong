@@ -10,7 +10,10 @@ class PaddlePower extends Projectile
     {
         super(board);
 
-        this.board = board;
+        this.board  = board;
+        this.speed  = Config.POWER_PROJECTILE_INITIAL_SPEED;
+        this.width  = Config.POWER_PROJECTILE_INITIAL_WIDTH;
+        this.height = Config.POWER_PROJECTILE_INITIAL_HEIGHT;
     }
 
     public long getPowerInitTime()

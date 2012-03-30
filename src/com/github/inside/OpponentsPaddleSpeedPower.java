@@ -1,5 +1,6 @@
 package com.github.inside;
 
+import java.awt.Color;
 import com.github.inside.PowerTimer;
 
 class OpponentsPaddleSpeedPower extends PaddlePower
@@ -7,6 +8,7 @@ class OpponentsPaddleSpeedPower extends PaddlePower
     public OpponentsPaddleSpeedPower(Board board)
     {
         super(board);
+        this.color = Color.RED;
     }
 
     public void updateForNewFrame()

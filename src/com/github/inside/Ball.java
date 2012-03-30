@@ -8,6 +8,11 @@ class Ball extends Projectile
     public Ball(Board board)
     {
         super(board);
+
+        this.speed  = Config.BALL_INITIAL_SPEED;
+        this.width  = Config.BALL_INITIAL_WIDTH;
+        this.height = Config.BALL_INITIAL_HEIGHT;
+        this.color  = Color.BLACK;
     }
 
     public void updateForNewFrame()

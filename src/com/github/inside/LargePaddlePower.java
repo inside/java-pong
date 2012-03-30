@@ -1,5 +1,6 @@
 package com.github.inside;
 
+import java.awt.Color;
 import com.github.inside.PowerTimer;
 
 class LargePaddlePower extends PaddlePower
@@ -7,6 +8,7 @@ class LargePaddlePower extends PaddlePower
     public LargePaddlePower(Board board)
     {
         super(board);
+        this.color = Color.ORANGE;
     }
 
     public void updateForNewFrame()

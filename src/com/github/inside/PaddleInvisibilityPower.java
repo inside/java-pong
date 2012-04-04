@@ -17,19 +17,21 @@ class PaddleInvisibilityPower extends PaddlePower
 
         if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.color = new Color(0, 0, 0, 0);
+//            this.board.leftPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "left";
             this.initTime = this.getCurrentTime();
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
+//            Animation.animatedElements.put("", this.board.leftPaddle);
         }
         else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.color = new Color(0, 0, 0, 0);
+//            this.board.rightPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "right";
             this.initTime = this.getCurrentTime();
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
+//            Animation.animatedElements.put("", this.board.rightPaddle);
         }
     }
 
@@ -37,11 +39,11 @@ class PaddleInvisibilityPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetColor();
+            this.board.leftPaddle.color = new Color(0, 0, 0, 255);
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetColor();
+            this.board.rightPaddle.color = new Color(0, 0, 0, 255);
         }
     }
 

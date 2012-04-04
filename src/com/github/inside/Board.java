@@ -11,6 +11,7 @@ import com.github.inside.Ball;
 import com.github.inside.Helper;
 import com.github.inside.WeightedValue;
 import com.github.inside.Paddle;
+import com.github.inside.Animation;
 import java.awt.RenderingHints;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -37,6 +38,8 @@ public class Board extends JPanel implements Runnable
     public Player rightPlayer;
     public WeightedValue[] weightedValues;
 
+    public double frameNumber = 0;
+
     public Board()
     {
         this.setLayout(null);
@@ -46,20 +49,22 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new WeightedValue[13];
-        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             52);
-        this.weightedValues[1]  = new WeightedValue("com.github.inside.PaddleSpeedPower",                 4);
-        this.weightedValues[2]  = new WeightedValue("com.github.inside.OpponentsPaddleSpeedPower",        4);
-        this.weightedValues[3]  = new WeightedValue("com.github.inside.PaddleSlownessPower",              4);
-        this.weightedValues[4]  = new WeightedValue("com.github.inside.OpponentsPaddleSlownessPower",     4);
-        this.weightedValues[5]  = new WeightedValue("com.github.inside.LargePaddlePower",                 4);
-        this.weightedValues[6]  = new WeightedValue("com.github.inside.OpponentsLargePaddlePower",        4);
-        this.weightedValues[7]  = new WeightedValue("com.github.inside.SmallPaddlePower",                 4);
-        this.weightedValues[8]  = new WeightedValue("com.github.inside.OpponentsSmallPaddlePower",        4);
-        this.weightedValues[9]  = new WeightedValue("com.github.inside.PaddleInvisibilityPower",          4);
-        this.weightedValues[10] = new WeightedValue("com.github.inside.OpponentsPaddleInvisibilityPower", 4);
-        this.weightedValues[11] = new WeightedValue("com.github.inside.PaddleImmobilityPower",            4);
-        this.weightedValues[12] = new WeightedValue("com.github.inside.OpponentsPaddleImmobilityPower",   4);
+//        this.weightedValues = new WeightedValue[13];
+        this.weightedValues = new WeightedValue[1];
+//        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             52);
+        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             100);
+//        this.weightedValues[1]  = new WeightedValue("com.github.inside.PaddleSpeedPower",                 4);
+//        this.weightedValues[2]  = new WeightedValue("com.github.inside.OpponentsPaddleSpeedPower",        4);
+//        this.weightedValues[3]  = new WeightedValue("com.github.inside.PaddleSlownessPower",              4);
+//        this.weightedValues[4]  = new WeightedValue("com.github.inside.OpponentsPaddleSlownessPower",     4);
+//        this.weightedValues[5]  = new WeightedValue("com.github.inside.LargePaddlePower",                 4);
+//        this.weightedValues[6]  = new WeightedValue("com.github.inside.OpponentsLargePaddlePower",        4);
+//        this.weightedValues[7]  = new WeightedValue("com.github.inside.SmallPaddlePower",                 4);
+//        this.weightedValues[8]  = new WeightedValue("com.github.inside.OpponentsSmallPaddlePower",        4);
+//        this.weightedValues[9]  = new WeightedValue("com.github.inside.PaddleInvisibilityPower",          4);
+//        this.weightedValues[10] = new WeightedValue("com.github.inside.OpponentsPaddleInvisibilityPower", 4);
+//        this.weightedValues[11] = new WeightedValue("com.github.inside.PaddleImmobilityPower",            4);
+//        this.weightedValues[12] = new WeightedValue("com.github.inside.OpponentsPaddleImmobilityPower",   4);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
@@ -115,6 +120,15 @@ public class Board extends JPanel implements Runnable
 
             i++;
         }
+
+        if (this.frameNumber <= 100)
+        {
+            double progress = Animation.easeOutQuad(frameNumber, 255, -255, 100);
+            System.out.println(progress);
+            this.leftPaddle.color = new Color(0, 0, 0, (int) progress);
+        }
+
+        this.frameNumber++;
 
         // Power timer
         PowerTimer.handlePowerTimer();

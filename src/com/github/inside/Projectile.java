@@ -17,7 +17,7 @@ public class Projectile extends Equipement
     public Projectile(Board board)
     {
         super(board);
-        this.creationTime = this.getCurrentTime();
+        this.creationTime = Board.currentTime;
         this.diesIn = this.creationTime + this.lifeTime;
     }
 
@@ -58,7 +58,7 @@ public class Projectile extends Equipement
         return new Vector(new double[] {x, y}).direction();
     }
 
-    public boolean isLiving(long currentTime)
+    public boolean isLiving()
     {
         if (this.diesNow)
         {
@@ -69,7 +69,7 @@ public class Projectile extends Equipement
             return true;
         }
 
-        return this.diesIn >= currentTime;
+        return this.diesIn >= Board.currentTime;
     }
 
     public Boolean hitsLeftWall()
@@ -130,10 +130,5 @@ public class Projectile extends Equipement
             this.y = Config.BOARD_HEIGHT - this.height;
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
         }
-    }
-
-    public long getCurrentTime()
-    {
-        return this.board.currentTime;
     }
 }

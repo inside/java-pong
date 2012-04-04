@@ -20,7 +20,7 @@ class PaddleSlownessPower extends PaddlePower
             this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "left";
-            this.initTime = this.getCurrentTime();
+            this.initTime = Board.currentTime;
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
         else if (this.hitsRightPaddle())
@@ -28,7 +28,7 @@ class PaddleSlownessPower extends PaddlePower
             this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "right";
-            this.initTime = this.getCurrentTime();
+            this.initTime = Board.currentTime;
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
         }
     }
@@ -49,11 +49,5 @@ class PaddleSlownessPower extends PaddlePower
     public long getPowerInitTime()
     {
         return super.getPowerInitTime();
-    }
-
-    // super method needs to be called to avoid NoSuchMethodException
-    public long getCurrentTime()
-    {
-        return super.getCurrentTime();
     }
 }

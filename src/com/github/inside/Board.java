@@ -26,7 +26,7 @@ public class Board extends JPanel implements Runnable
     private boolean paused = false;
     public boolean isRunning = false;
     private long period = 0;
-    public long currentTime = 0;
+    public static long currentTime = 0;
     public long pauseDuration = 0;
     public long pausedAtTime = 0;
     public long fireProjectileTime = 0;
@@ -109,7 +109,7 @@ public class Board extends JPanel implements Runnable
 
         for (Projectile projectile : this.projectiles)
         {
-            if (projectile.isLiving(this.currentTime))
+            if (projectile.isLiving())
             {
                 projectile.updateForNewFrame();
             }
@@ -268,7 +268,7 @@ public class Board extends JPanel implements Runnable
 
     public long getPeriodProcessingTime()
     {
-        return System.currentTimeMillis() - this.pauseDuration - this.currentTime;
+        return System.currentTimeMillis() - this.pauseDuration - Board.currentTime;
     }
 
     public Projectile createNewProjectile(String name)
@@ -312,17 +312,17 @@ public class Board extends JPanel implements Runnable
 
     public boolean needsNewProjectile()
     {
-        return this.fireProjectileTime <= this.currentTime && this.projectiles.size() < Config.MAX_PROJECTILES;
+        return this.fireProjectileTime <= Board.currentTime && this.projectiles.size() < Config.MAX_PROJECTILES;
     }
 
     public void initFireProjectileTime()
     {
-        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + this.currentTime;
+        this.fireProjectileTime = Helper.getRandomFromRange(1000, 2000) + Board.currentTime;
     }
 
     public void initCurrentTime()
     {
-        this.currentTime = System.currentTimeMillis() - this.pauseDuration;
+        Board.currentTime = System.currentTimeMillis() - this.pauseDuration;
     }
 
     public void initPauseDuration()

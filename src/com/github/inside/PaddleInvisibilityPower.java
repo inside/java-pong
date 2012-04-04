@@ -20,7 +20,7 @@ class PaddleInvisibilityPower extends PaddlePower
 //            this.board.leftPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "left";
-            this.initTime = this.getCurrentTime();
+            this.initTime = Board.currentTime;
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
 //            Animation.animatedElements.put("", this.board.leftPaddle);
         }
@@ -29,7 +29,7 @@ class PaddleInvisibilityPower extends PaddlePower
 //            this.board.rightPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "right";
-            this.initTime = this.getCurrentTime();
+            this.initTime = Board.currentTime;
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
 //            Animation.animatedElements.put("", this.board.rightPaddle);
         }
@@ -52,12 +52,5 @@ class PaddleInvisibilityPower extends PaddlePower
     public long getPowerInitTime()
     {
         return super.getPowerInitTime();
-    }
-
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
-    public long getCurrentTime()
-    {
-        return super.getCurrentTime();
     }
 }

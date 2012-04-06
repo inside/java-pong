@@ -1,11 +1,13 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
+import com.github.inside.Config;
 
-class OpponentsSmallPaddlePower extends PaddlePower
+public class OpponentsPaddleSlownessPower extends PaddlePower
 {
-    public OpponentsSmallPaddlePower(Board board)
+    public OpponentsPaddleSlownessPower(Board board)
     {
         super(board);
         this.color = Color.ORANGE;
@@ -17,7 +19,7 @@ class OpponentsSmallPaddlePower extends PaddlePower
 
         if (this.hitsRightPaddle())
         {
-            this.board.leftPaddle.height = Config.PADDLE_MIN_HEIGHT;
+            this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
@@ -25,7 +27,7 @@ class OpponentsSmallPaddlePower extends PaddlePower
         }
         else if (this.hitsLeftPaddle())
         {
-            this.board.rightPaddle.height = Config.PADDLE_MIN_HEIGHT;
+            this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
@@ -37,11 +39,11 @@ class OpponentsSmallPaddlePower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetHeight();
+            this.board.leftPaddle.resetSpeed();
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetHeight();
+            this.board.rightPaddle.resetSpeed();
         }
     }
 

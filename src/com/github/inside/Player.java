@@ -3,7 +3,7 @@ package com.github.inside;
 import javax.swing.JLabel;
 import java.lang.Integer;
 
-class Player extends JLabel
+public class Player extends JLabel
 {
     public String name;
     public int score = 0;

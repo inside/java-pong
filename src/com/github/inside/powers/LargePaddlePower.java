@@ -1,9 +1,11 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
+import com.github.inside.Config;
 
-class LargePaddlePower extends PaddlePower
+public class LargePaddlePower extends PaddlePower
 {
     public LargePaddlePower(Board board)
     {

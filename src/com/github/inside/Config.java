@@ -2,7 +2,7 @@ package com.github.inside;
 
 import java.awt.Color;
 
-class Config
+public class Config
 {
     public static final int FRAME_RATE = 60; // 30 to 100 images per second
     public static final int BOARD_CONTAINER_TOP_MARGIN = 50;

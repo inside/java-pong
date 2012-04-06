@@ -7,7 +7,7 @@ import com.github.inside.Board;
 import com.github.inside.Config;
 import com.github.inside.RepeatingReleasedEventsFixer;
 
-class Pong extends JFrame
+public class Pong extends JFrame
 {
     public Pong()
     {

@@ -1,11 +1,12 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
 
-class PaddleImmobilityPower extends PaddlePower
+public class PaddleInvisibilityPower extends PaddlePower
 {
-    public PaddleImmobilityPower(Board board)
+    public PaddleInvisibilityPower(Board board)
     {
         super(board);
         this.color = Color.RED;
@@ -17,19 +18,21 @@ class PaddleImmobilityPower extends PaddlePower
 
         if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.speed = 0;
+//            this.board.leftPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
+//            Animation.animatedElements.put("", this.board.leftPaddle);
         }
         else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.speed = 0;
+//            this.board.rightPaddle.startFadeOut();
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
+//            Animation.animatedElements.put("", this.board.rightPaddle);
         }
     }
 
@@ -37,11 +40,11 @@ class PaddleImmobilityPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetSpeed();
+            this.board.leftPaddle.color = new Color(0, 0, 0, 255);
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetSpeed();
+            this.board.rightPaddle.color = new Color(0, 0, 0, 255);
         }
     }
 

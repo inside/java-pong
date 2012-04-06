@@ -1,6 +1,10 @@
-package com.github.inside;
+package com.github.inside.powers;
 
-class PaddlePower extends Projectile
+import com.github.inside.Projectile;
+import com.github.inside.Board;
+import com.github.inside.Config;
+
+public class PaddlePower extends Projectile
 {
     public Board board;
     public long initTime;

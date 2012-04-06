@@ -2,7 +2,7 @@ package com.github.inside;
 
 import java.lang.Integer;
 
-class Helper
+public class Helper
 {
     public static int getRandomFromRange(int min, int max)
     {

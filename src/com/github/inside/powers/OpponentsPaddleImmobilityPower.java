@@ -1,37 +1,36 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
 
-class PaddleInvisibilityPower extends PaddlePower
+public class OpponentsPaddleImmobilityPower extends PaddlePower
 {
-    public PaddleInvisibilityPower(Board board)
+    public OpponentsPaddleImmobilityPower(Board board)
     {
         super(board);
-        this.color = Color.RED;
+        this.color = Color.ORANGE;
     }
 
     public void updateForNewFrame()
     {
         super.updateForNewFrame();
 
-        if (this.hitsLeftPaddle())
+        if (this.hitsRightPaddle())
         {
-//            this.board.leftPaddle.startFadeOut();
+            this.board.leftPaddle.speed = 0;
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
-//            Animation.animatedElements.put("", this.board.leftPaddle);
         }
-        else if (this.hitsRightPaddle())
+        else if (this.hitsLeftPaddle())
         {
-//            this.board.rightPaddle.startFadeOut();
+            this.board.rightPaddle.speed = 0;
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
             PowerTimer.rightPaddlePowers.put(this.getClass().getName(), this);
-//            Animation.animatedElements.put("", this.board.rightPaddle);
         }
     }
 
@@ -39,11 +38,11 @@ class PaddleInvisibilityPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.color = new Color(0, 0, 0, 255);
+            this.board.leftPaddle.resetSpeed();
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.color = new Color(0, 0, 0, 255);
+            this.board.rightPaddle.resetSpeed();
         }
     }
 

@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.Long;
 
-class PowerTimer
+public class PowerTimer
 {
     // The parameters were set on the advice of:
     // http://ria101.wordpress.com/2011/12/12/concurrenthashmap-avoid-a-common-misuse/

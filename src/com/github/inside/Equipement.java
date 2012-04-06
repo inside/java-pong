@@ -5,15 +5,15 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.lang.Math;
 
-class Equipement
+public class Equipement
 {
-    int width,
-        height;
-    double speed,
+    public int width,
+           height;
+    public double speed,
            x,
            y;
     Board board;
-    Color color;
+    public Color color;
     String side;
 
     // Ball

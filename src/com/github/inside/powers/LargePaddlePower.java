@@ -1,14 +1,16 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
+import com.github.inside.Config;
 
-class PaddleImmobilityPower extends PaddlePower
+public class LargePaddlePower extends PaddlePower
 {
-    public PaddleImmobilityPower(Board board)
+    public LargePaddlePower(Board board)
     {
         super(board);
-        this.color = Color.RED;
+        this.color = Color.ORANGE;
     }
 
     public void updateForNewFrame()
@@ -17,7 +19,7 @@ class PaddleImmobilityPower extends PaddlePower
 
         if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.speed = 0;
+            this.board.leftPaddle.height = Config.PADDLE_MAX_HEIGHT;
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
@@ -25,7 +27,7 @@ class PaddleImmobilityPower extends PaddlePower
         }
         else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.speed = 0;
+            this.board.rightPaddle.height = Config.PADDLE_MAX_HEIGHT;
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
@@ -37,11 +39,11 @@ class PaddleImmobilityPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetSpeed();
+            this.board.leftPaddle.resetHeight();
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetSpeed();
+            this.board.rightPaddle.resetHeight();
         }
     }
 

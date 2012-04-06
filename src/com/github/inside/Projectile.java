@@ -12,7 +12,7 @@ public class Projectile extends Equipement
          lifeTime = Config.PROJECTILES_DEFAULT_LIFETIME;
     double vX,
            vY;
-    boolean diesNow = false;
+    public boolean diesNow = false;
 
     public Projectile(Board board)
     {

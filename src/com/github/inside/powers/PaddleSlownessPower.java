@@ -1,31 +1,33 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
+import com.github.inside.Config;
 
-class OpponentsPaddleInvisibilityPower extends PaddlePower
+public class PaddleSlownessPower extends PaddlePower
 {
-    public OpponentsPaddleInvisibilityPower(Board board)
+    public PaddleSlownessPower(Board board)
     {
         super(board);
-        this.color = Color.ORANGE;
+        this.color = Color.RED;
     }
 
     public void updateForNewFrame()
     {
         super.updateForNewFrame();
 
-        if (this.hitsRightPaddle())
+        if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.color = new Color(0, 0, 0, 0);
+            this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
             PowerTimer.leftPaddlePowers.put(this.getClass().getName(), this);
         }
-        else if (this.hitsLeftPaddle())
+        else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.color = new Color(0, 0, 0, 0);
+            this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
@@ -37,16 +39,15 @@ class OpponentsPaddleInvisibilityPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetColor();
+            this.board.leftPaddle.resetSpeed();
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetColor();
+            this.board.rightPaddle.resetSpeed();
         }
     }
 
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
+    // super method needs to be called to avoid NoSuchMethodException
     public long getPowerInitTime()
     {
         return super.getPowerInitTime();

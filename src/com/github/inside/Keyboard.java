@@ -3,7 +3,7 @@ package com.github.inside;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-class Keyboard extends KeyAdapter
+public class Keyboard extends KeyAdapter
 {
     private Board board;
 

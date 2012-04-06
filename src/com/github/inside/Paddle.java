@@ -2,7 +2,7 @@ package com.github.inside;
 
 import java.awt.Color;
 
-class Paddle extends Equipement
+public class Paddle extends Equipement
 {
     public boolean isGoingUp   = false,
                    isGoingDown = false;

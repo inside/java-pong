@@ -3,7 +3,7 @@ package com.github.inside;
 import java.awt.Color;
 import com.github.inside.Config;
 
-class Ball extends Projectile
+public class Ball extends Projectile
 {
     public Ball(Board board)
     {

@@ -1,6 +1,6 @@
 package com.github.inside;
 
-class WeightedValue
+public class WeightedValue
 {
     public String name;
     public int weight;

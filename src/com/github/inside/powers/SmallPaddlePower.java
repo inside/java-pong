@@ -1,11 +1,13 @@
-package com.github.inside;
+package com.github.inside.powers;
 
 import java.awt.Color;
 import com.github.inside.PowerTimer;
+import com.github.inside.Board;
+import com.github.inside.Config;
 
-class PaddleSlownessPower extends PaddlePower
+public class SmallPaddlePower extends PaddlePower
 {
-    public PaddleSlownessPower(Board board)
+    public SmallPaddlePower(Board board)
     {
         super(board);
         this.color = Color.RED;
@@ -17,7 +19,7 @@ class PaddleSlownessPower extends PaddlePower
 
         if (this.hitsLeftPaddle())
         {
-            this.board.leftPaddle.speed = Config.PADDLE_MIN_SPEED;
+            this.board.leftPaddle.height = Config.PADDLE_MIN_HEIGHT;
             this.diesNow = true;
             this.side = "left";
             this.initTime = Board.currentTime;
@@ -25,7 +27,7 @@ class PaddleSlownessPower extends PaddlePower
         }
         else if (this.hitsRightPaddle())
         {
-            this.board.rightPaddle.speed = Config.PADDLE_MIN_SPEED;
+            this.board.rightPaddle.height = Config.PADDLE_MIN_HEIGHT;
             this.diesNow = true;
             this.side = "right";
             this.initTime = Board.currentTime;
@@ -37,15 +39,16 @@ class PaddleSlownessPower extends PaddlePower
     {
         if (this.side.equals("left"))
         {
-            this.board.leftPaddle.resetSpeed();
+            this.board.leftPaddle.resetHeight();
         }
         else if (this.side.equals("right"))
         {
-            this.board.rightPaddle.resetSpeed();
+            this.board.rightPaddle.resetHeight();
         }
     }
 
-    // super method needs to be called to avoid NoSuchMethodException
+    // The method needs to be implemented here to avoid a NoSuchMethodException.
+    // The real implementation is done in the parent.
     public long getPowerInitTime()
     {
         return super.getPowerInitTime();

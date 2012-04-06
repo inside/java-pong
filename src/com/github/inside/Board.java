@@ -100,8 +100,6 @@ public class Board extends JPanel implements Runnable
             this.projectiles.add(this.createNewProjectile("random"));
         }
 
-        int i = 0;
-
         for (Projectile projectile : this.projectiles)
         {
             if (projectile.isLiving())
@@ -110,10 +108,8 @@ public class Board extends JPanel implements Runnable
             }
             else
             {
-                this.projectiles.remove(i);
+                this.projectiles.remove(projectile);
             }
-
-            i++;
         }
 
         // Power timer

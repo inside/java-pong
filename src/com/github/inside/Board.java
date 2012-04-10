@@ -9,7 +9,8 @@ import com.github.inside.Config;
 import java.lang.Math;
 import com.github.inside.Ball;
 import com.github.inside.Helper;
-import com.github.inside.WeightedValue;
+import java.util.HashMap;
+import java.lang.Integer;
 import com.github.inside.Paddle;
 import java.awt.RenderingHints;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Board extends JPanel implements Runnable
     public Paddle rightPaddle;
     public Player leftPlayer;
     public Player rightPlayer;
-    public WeightedValue[] weightedValues;
+    public HashMap<String, Integer> weightedValues;
 
     public Board()
     {
@@ -46,20 +47,20 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new WeightedValue[13];
-        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                                    52);
-        this.weightedValues[1]  = new WeightedValue("com.github.inside.powers.PaddleSpeedPower",                 4);
-        this.weightedValues[2]  = new WeightedValue("com.github.inside.powers.OpponentsPaddleSpeedPower",        4);
-        this.weightedValues[3]  = new WeightedValue("com.github.inside.powers.PaddleSlownessPower",              4);
-        this.weightedValues[4]  = new WeightedValue("com.github.inside.powers.OpponentsPaddleSlownessPower",     4);
-        this.weightedValues[5]  = new WeightedValue("com.github.inside.powers.LargePaddlePower",                 4);
-        this.weightedValues[6]  = new WeightedValue("com.github.inside.powers.OpponentsLargePaddlePower",        4);
-        this.weightedValues[7]  = new WeightedValue("com.github.inside.powers.SmallPaddlePower",                 4);
-        this.weightedValues[8]  = new WeightedValue("com.github.inside.powers.OpponentsSmallPaddlePower",        4);
-        this.weightedValues[9]  = new WeightedValue("com.github.inside.powers.PaddleInvisibilityPower",          4);
-        this.weightedValues[10] = new WeightedValue("com.github.inside.powers.OpponentsPaddleInvisibilityPower", 4);
-        this.weightedValues[11] = new WeightedValue("com.github.inside.powers.PaddleImmobilityPower",            4);
-        this.weightedValues[12] = new WeightedValue("com.github.inside.powers.OpponentsPaddleImmobilityPower",   4);
+        this.weightedValues = new HashMap<String, Integer>();
+        this.weightedValues.put("com.github.inside.Ball",                                    52);
+        this.weightedValues.put("com.github.inside.powers.PaddleSpeedPower",                 4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleSpeedPower",        4);
+        this.weightedValues.put("com.github.inside.powers.PaddleSlownessPower",              4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleSlownessPower",     4);
+        this.weightedValues.put("com.github.inside.powers.LargePaddlePower",                 4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsLargePaddlePower",        4);
+        this.weightedValues.put("com.github.inside.powers.SmallPaddlePower",                 4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsSmallPaddlePower",        4);
+        this.weightedValues.put("com.github.inside.powers.PaddleInvisibilityPower",          4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleInvisibilityPower", 4);
+        this.weightedValues.put("com.github.inside.powers.PaddleImmobilityPower",            4);
+        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleImmobilityPower",   4);
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));

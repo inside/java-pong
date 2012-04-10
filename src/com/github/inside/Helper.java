@@ -1,5 +1,7 @@
 package com.github.inside;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.lang.Integer;
 
 public class Helper
@@ -9,31 +11,31 @@ public class Helper
         return min + (int) Math.round(Math.random() * (max - min));
     }
 
-    public static String getWeightedRandomValue(WeightedValue[] weightedValues)
+    public static String getWeightedRandomValue(HashMap<String, Integer> weightedValues)
     {
         int weightSum = 0;
         int limit = 0;
         int random;
+        String key = "com.github.inside.Ball";
 
-        for (int i = 0; i < weightedValues.length; i++)
+        for (int value : weightedValues.values())
         {
-            weightSum += weightedValues[i].weight;
+            weightSum += value;
         }
 
         random = Helper.getRandomFromRange(0, weightSum);
 
-        int i = 0;
-
-        for (; i < weightedValues.length; i++)
+        for (Map.Entry<String, Integer> weightedValue : weightedValues.entrySet())
         {
-            limit += weightedValues[i].weight;
+            limit += weightedValue.getValue();
 
             if (limit >= random)
             {
+                key = weightedValue.getKey();
                 break;
             }
         }
 
-        return weightedValues[i].name;
+        return key;
     }
 }

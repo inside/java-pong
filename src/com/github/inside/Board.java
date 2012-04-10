@@ -47,7 +47,7 @@ public class Board extends JPanel implements Runnable
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
         this.weightedValues = new WeightedValue[13];
-        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                             52);
+        this.weightedValues[0]  = new WeightedValue("com.github.inside.Ball",                                    52);
         this.weightedValues[1]  = new WeightedValue("com.github.inside.powers.PaddleSpeedPower",                 4);
         this.weightedValues[2]  = new WeightedValue("com.github.inside.powers.OpponentsPaddleSpeedPower",        4);
         this.weightedValues[3]  = new WeightedValue("com.github.inside.powers.PaddleSlownessPower",              4);

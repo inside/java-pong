@@ -20,8 +20,17 @@ public class PaddlePower extends Projectile
         this.height = Config.POWER_PROJECTILE_INITIAL_HEIGHT;
     }
 
-    public long getPowerInitTime()
+    public long getInitTime()
     {
         return this.initTime;
+    }
+
+    public long getLifeTime()
+    {
+        return Config.POWER_LIFETIME;
+    }
+
+    public void action()
+    {
     }
 }

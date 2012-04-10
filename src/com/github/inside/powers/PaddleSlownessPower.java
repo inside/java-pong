@@ -46,10 +46,4 @@ public class PaddleSlownessPower extends PaddlePower
             this.board.rightPaddle.resetSpeed();
         }
     }
-
-    // super method needs to be called to avoid NoSuchMethodException
-    public long getPowerInitTime()
-    {
-        return super.getPowerInitTime();
-    }
 }

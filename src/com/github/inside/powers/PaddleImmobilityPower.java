@@ -46,10 +46,8 @@ public class PaddleImmobilityPower extends PaddlePower
         }
     }
 
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
-    public long getPowerInitTime()
+    public long getLifeTime()
     {
-        return super.getPowerInitTime();
+        return 4000;
     }
 }

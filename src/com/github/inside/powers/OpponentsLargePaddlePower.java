@@ -46,11 +46,4 @@ public class OpponentsLargePaddlePower extends PaddlePower
             this.board.rightPaddle.resetHeight();
         }
     }
-
-    // The method needs to be implemented here to avoid a NoSuchMethodException.
-    // The real implementation is done in the parent.
-    public long getPowerInitTime()
-    {
-        return super.getPowerInitTime();
-    }
 }

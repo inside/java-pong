@@ -16,7 +16,9 @@
     </target>
 
     <target name="compile" depends="init" description="Compiles classes from java sources">
-        <javac srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false" />
+        <javac srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked" />
+        </javac>
     </target>
 
     <target name="jar" depends="compile" description="Builds the distributable jar file">

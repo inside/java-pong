@@ -4,13 +4,14 @@ import java.awt.Color;
 import com.github.inside.PowerTimer;
 import com.github.inside.Board;
 import com.github.inside.Config;
+import com.github.inside.PaddlePower;
 
 public class OpponentsPaddleSpeedPower extends PaddlePower
 {
     public OpponentsPaddleSpeedPower(Board board)
     {
         super(board);
-        this.color = Color.RED;
+        this.color = Config.MALUS_COLOR;
     }
 
     public void updateForNewFrame()

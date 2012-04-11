@@ -1,4 +1,4 @@
-package com.github.inside.powers;
+package com.github.inside;
 
 import com.github.inside.Projectile;
 import com.github.inside.Board;

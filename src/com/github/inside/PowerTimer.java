@@ -3,7 +3,7 @@ package com.github.inside;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
-import com.github.inside.powers.PaddlePower;
+import com.github.inside.PaddlePower;
 
 public class PowerTimer
 {

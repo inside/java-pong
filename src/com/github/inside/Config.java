@@ -37,4 +37,6 @@ public class Config
     public static final long PROJECTILES_DEFAULT_LIFETIME = 20000; // milliseconds
 
     public static final Color PADDLE_COLOR = Color.BLACK;
+    public static final Color BONUS_COLOR = Color.GREEN;
+    public static final Color MALUS_COLOR = Color.RED;
 }

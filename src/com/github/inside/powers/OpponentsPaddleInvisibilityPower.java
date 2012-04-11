@@ -3,13 +3,15 @@ package com.github.inside.powers;
 import java.awt.Color;
 import com.github.inside.PowerTimer;
 import com.github.inside.Board;
+import com.github.inside.Config;
+import com.github.inside.PaddlePower;
 
 public class OpponentsPaddleInvisibilityPower extends PaddlePower
 {
     public OpponentsPaddleInvisibilityPower(Board board)
     {
         super(board);
-        this.color = Color.ORANGE;
+        this.color = Config.BONUS_COLOR;
     }
 
     public void updateForNewFrame()

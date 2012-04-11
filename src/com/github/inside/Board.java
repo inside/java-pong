@@ -47,24 +47,25 @@ public class Board extends JPanel implements Runnable
         this.projectiles.add(this.createNewProjectile("com.github.inside.Ball"));
         this.leftPaddle = new Paddle("left", this);
         this.rightPaddle = new Paddle("right", this);
-        this.weightedValues = new HashMap<String, Integer>();
-        this.weightedValues.put("com.github.inside.Ball",                                    52);
-        this.weightedValues.put("com.github.inside.powers.PaddleSpeedPower",                 4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleSpeedPower",        4);
-        this.weightedValues.put("com.github.inside.powers.PaddleSlownessPower",              4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleSlownessPower",     4);
-        this.weightedValues.put("com.github.inside.powers.LargePaddlePower",                 4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsLargePaddlePower",        4);
-        this.weightedValues.put("com.github.inside.powers.SmallPaddlePower",                 4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsSmallPaddlePower",        4);
-        this.weightedValues.put("com.github.inside.powers.PaddleInvisibilityPower",          4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleInvisibilityPower", 4);
-        this.weightedValues.put("com.github.inside.powers.PaddleImmobilityPower",            4);
-        this.weightedValues.put("com.github.inside.powers.OpponentsPaddleImmobilityPower",   4);
+        this.initWeightedValues();
         this.setFocusable(true);
         this.setDoubleBuffered(true);
         this.setBackground(Color.decode("#ffffff"));
         this.addKeyListener(new Keyboard(this));
+    }
+
+    public void initWeightedValues()
+    {
+        String[] powers = Helper.getPowerList();
+        int ballWeight = 60;
+        int powersWeight = (int) Math.ceil((100 - ballWeight) / (double) powers.length);
+        this.weightedValues = new HashMap<String, Integer>();
+        this.weightedValues.put("com.github.inside.Ball", ballWeight);
+
+        for (int i = 0; i < powers.length; i++)
+        {
+            this.weightedValues.put(powers[i], powersWeight);
+        }
     }
 
     public void paintComponent(Graphics g)

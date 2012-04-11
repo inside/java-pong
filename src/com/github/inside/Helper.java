@@ -3,6 +3,7 @@ package com.github.inside;
 import java.util.Map;
 import java.util.HashMap;
 import java.lang.Integer;
+import java.io.File;
 
 public class Helper
 {
@@ -37,5 +38,31 @@ public class Helper
         }
 
         return key;
+    }
+
+    public static String[] getPowerList()
+    {
+        File directory = new File("src"
+                + File.separator
+                + "com"
+                + File.separator
+                + "github"
+                + File.separator
+                + "inside"
+                + File.separator
+                + "powers");
+        File[] files = directory.listFiles();
+        String[] powers = new String[files.length];
+
+        for (int i = 0; i < files.length; i++)
+        {
+            powers[i] = files[i]
+                .toString()
+                .substring(4)
+                .replaceFirst("\\.java$", "")
+                .replaceAll(File.separator, ".");
+        }
+
+        return powers;
     }
 }

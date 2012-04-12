@@ -24,7 +24,7 @@ public class PowerTimer
         }
     }
 
-    public static void iterateOverPowers(ConcurrentHashMap map)
+    public static void iterateOverPowers(ConcurrentHashMap<String, PaddlePower> map)
     {
         Iterator<Map.Entry<String, PaddlePower>> entries = map.entrySet().iterator();
 

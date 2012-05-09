@@ -35,7 +35,7 @@ public class PowerTimer
 
             if (power.getInitTime() + power.getLifeTime() <= Board.currentTime)
             {
-                power.action();
+                power.end();
                 map.remove(entry.getKey());
             }
         }

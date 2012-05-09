@@ -30,7 +30,7 @@ public class OpponentsPaddleImmobilityPower extends PaddlePower
         }
     }
 
-    public void action()
+    public void end()
     {
         if (this.side.equals("left"))
         {

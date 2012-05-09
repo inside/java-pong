@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.lang.Math;
 
-public class Equipement
+public abstract class Equipement
 {
     public int width,
            height;
@@ -44,8 +44,5 @@ public class Equipement
         g.fill(rectangle);
     }
 
-    // Implemented in child classes
-    public void resetPosition()
-    {
-    }
+    public abstract void resetPosition();
 }

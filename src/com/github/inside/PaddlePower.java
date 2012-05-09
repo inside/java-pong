@@ -5,7 +5,7 @@ import com.github.inside.Board;
 import com.github.inside.Config;
 import com.github.inside.PowerTimer;
 
-public class PaddlePower extends Projectile
+public abstract class PaddlePower extends Projectile
 {
     public Board board;
     public long initTime;
@@ -61,7 +61,5 @@ public class PaddlePower extends Projectile
         System.out.println(this.side + " player caught a power: \"" + this.getName() + "\"");
     }
 
-    public void action()
-    {
-    }
+    public abstract void end();
 }

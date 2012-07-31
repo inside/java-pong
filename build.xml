@@ -29,6 +29,10 @@
         </jar>
     </target>
 
+    <target name="sign" depends="jar" description="Signs the jar file">
+        <signjar jar="${jardir}/${ant.project.name}.jar" alias="javapong" storepass="antjavapong" verbose="true" />
+    </target>
+
     <target name="run" depends="jar" description="Compiles and runs the jar file">
         <java jar="${jardir}/${ant.project.name}.jar" fork="true" />
     </target>

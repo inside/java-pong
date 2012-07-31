@@ -42,27 +42,21 @@ public class Helper
 
     public static String[] getPowerList()
     {
-        File directory = new File("src"
-                + File.separator
-                + "com"
-                + File.separator
-                + "github"
-                + File.separator
-                + "inside"
-                + File.separator
-                + "powers");
-        File[] files = directory.listFiles();
-        String[] powers = new String[files.length];
-
-        for (int i = 0; i < files.length; i++)
-        {
-            powers[i] = files[i]
-                .toString()
-                .substring(4)
-                .replaceFirst("\\.java$", "")
-                .replaceAll(File.separator, ".");
-        }
+        String[] powers = new String[12];
+        powers[0] = "com.github.inside.powers.LargePaddlePower";
+        powers[1] = "com.github.inside.powers.OpponentsLargePaddlePower";
+        powers[2] = "com.github.inside.powers.OpponentsPaddleImmobilityPower";
+        powers[3] = "com.github.inside.powers.OpponentsPaddleInvisibilityPower";
+        powers[4] = "com.github.inside.powers.OpponentsPaddleSlownessPower";
+        powers[5] = "com.github.inside.powers.OpponentsPaddleSpeedPower";
+        powers[6] = "com.github.inside.powers.OpponentsSmallPaddlePower";
+        powers[7] = "com.github.inside.powers.PaddleImmobilityPower";
+        powers[8] = "com.github.inside.powers.PaddleInvisibilityPower";
+        powers[9] = "com.github.inside.powers.PaddleSlownessPower";
+        powers[10] = "com.github.inside.powers.PaddleSpeedPower";
+        powers[11] = "com.github.inside.powers.SmallPaddlePower";
 
         return powers;
     }
+
 }

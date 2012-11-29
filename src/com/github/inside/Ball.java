@@ -29,6 +29,10 @@ public class Ball extends Projectile
             this.reboundsOnPaddle(this.board.leftPaddle);
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
             this.board.leftPlayer.updateScore();
+            this.board.leftPlayer.updateScoreDelta(this.board.rightPlayer.score);
+            this.board.rightPlayer.updateScoreDelta(this.board.leftPlayer.score);
+            this.board.leftPlayer.setText();
+            this.board.rightPlayer.setText();
         }
         else if (this.hitsRightPaddle())
         {
@@ -36,6 +40,10 @@ public class Ball extends Projectile
             this.reboundsOnPaddle(this.board.rightPaddle);
             this.setVelocity(this.getUnitVector(this.vX, this.vY));
             this.board.rightPlayer.updateScore();
+            this.board.rightPlayer.updateScoreDelta(this.board.leftPlayer.score);
+            this.board.leftPlayer.updateScoreDelta(this.board.rightPlayer.score);
+            this.board.leftPlayer.setText();
+            this.board.rightPlayer.setText();
         }
     }
 
